@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ebru Tokatlı — Engineering Portfolio</title>
+<title data-en="Ebru Tokatlı — Engineering Portfolio" data-tr="Ebru Tokatlı — Mühendislik Portföyü">Ebru Tokatlı — Engineering Portfolio</title>
 <style>
   :root{
     --ink:#0a0e1a;
@@ -47,17 +47,24 @@
     border-bottom:1px solid var(--line);
   }
   .bar{
-    display:flex;align-items:baseline;justify-content:space-between;
+    display:flex;align-items:center;justify-content:space-between;
     padding:22px 32px;max-width:1140px;margin:0 auto;
   }
   .name{font-family:var(--serif);font-size:1.5rem;letter-spacing:.01em;color:var(--pale)}
   .name b{font-weight:500}
-  nav{display:flex;gap:30px}
+  nav{display:flex;gap:30px;align-items:center}
   nav a{
     font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;
     color:var(--haze);text-decoration:none;transition:color .3s;
   }
   nav a:hover{color:var(--cyan)}
+
+  .langtog{background:none;border:1px solid var(--line);border-radius:2px;color:var(--haze);font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;padding:5px 9px;cursor:pointer;display:inline-flex;gap:6px;align-items:center;transition:border-color .3s;line-height:1}
+  .langtog:hover{border-color:var(--pale)}
+  .langtog [data-lang]{opacity:.4;transition:opacity .3s}
+  .langtog [data-lang].active{opacity:1;color:var(--pale)}
+  .langtog .sep{opacity:.3}
+
   .intro{padding:48px 0 36px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;border-bottom:1px solid var(--line)}
   .intro h1{
     font-family:var(--serif);font-weight:400;
@@ -71,6 +78,10 @@
   .shead h2{font-family:var(--serif);font-weight:400;font-size:1.55rem;color:var(--pale)}
   .shead .rule{flex:1;height:1px;background:var(--line)}
   .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .thumb.ph{background:radial-gradient(120% 120% at 70% 0%,rgba(124,108,240,.22),rgba(86,184,212,.06) 45%,var(--ink) 90%)}
+  span.card{cursor:default}
+  span.card:hover{border-color:var(--line);box-shadow:none}
   .card{
     background:linear-gradient(165deg,var(--slate2),var(--slate));
     border:1px solid var(--line);border-radius:2px;overflow:hidden;
@@ -87,13 +98,11 @@
   .thumb img{width:100%;height:100%;object-fit:cover;display:block;
     transition:transform .6s ease,filter .6s ease;filter:saturate(.92) brightness(.92)}
   .card:hover .thumb img{transform:scale(1.04);filter:saturate(1.05) brightness(1)}
-  /* make whole card a link */
   a.card{text-decoration:none;color:inherit;display:block}
   .cbody{padding:20px 22px 24px}
   .cbody .tag{font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;color:var(--cyan)}
   .cbody h3{font-family:var(--serif);font-weight:500;font-size:1.4rem;margin:8px 0 8px;color:var(--pale)}
   .cbody p{color:var(--haze);font-size:1rem;line-height:1.6}
-  /* CV */
   .cvgrid{display:grid;grid-template-columns:170px 1fr;gap:0 32px}
   .cvrow{display:contents}
   .cvkey{font-family:var(--mono);font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;color:var(--lumen);padding:18px 0;border-top:1px solid var(--line)}
@@ -119,9 +128,10 @@
   footer a:hover{color:var(--cyan);border-color:var(--cyan)}
   @media(max-width:720px){
     .grid{grid-template-columns:1fr}
+    .grid4{grid-template-columns:repeat(2,1fr)}
     .intro{grid-template-columns:1fr}
     .intro .meta{text-align:left}
-    nav{gap:18px}
+    nav{gap:16px}
   }
   @media(prefers-reduced-motion:reduce){
     .card{opacity:1;transform:none;transition:border-color .5s,box-shadow .5s}
@@ -133,60 +143,62 @@
     <div class="bar">
       <div class="name"><b>Ebru Tokatlı</b></div>
       <nav>
-        <a href="#work">Work</a>
-        <a href="#cv">CV</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a href="#work" data-en="Work" data-tr="Çalışmalar">Work</a>
+        <a href="#cv" data-en="CV" data-tr="Özgeçmiş">CV</a>
+        <a href="#about" data-en="About" data-tr="Hakkında">About</a>
+        <a href="#offtopic" data-en="Off Topic" data-tr="Konu Dışı">Off Topic</a>
+        <a href="#contact" data-en="Contact" data-tr="İletişim">Contact</a>
+        <button class="langtog" id="langtog" aria-label="Language"><span data-lang="en">EN</span><span class="sep">/</span><span data-lang="tr">TR</span></button>
       </nav>
     </div>
   </div>
   <div class="wrap">
     <div class="intro">
-      <h1>Mechanical engineering, <em>electromagnetics</em>, <em>acoustics</em>.</h1>
-      <div class="meta">
+      <h1 data-en="Mechanical engineering, <em>electromagnetics</em>, <em>acoustics</em>." data-tr="Makine mühendisliği, <em>elektromanyetik</em>, <em>akustik</em>.">Mechanical engineering, <em>electromagnetics</em>, <em>acoustics</em>.</h1>
+      <div class="meta" data-en="İSTANBUL<br>SIMULATION · <span>DESIGN</span> · FABRICATION" data-tr="İSTANBUL<br>SİMÜLASYON · <span>TASARIM</span> · ÜRETİM">
         İSTANBUL<br>
         SIMULATION · <span>DESIGN</span> · FABRICATION
       </div>
     </div>
     <section id="work">
       <div class="shead">
-        <h2>Work</h2><span class="rule"></span>
+        <h2 data-en="Work" data-tr="Çalışmalar">Work</h2><span class="rule"></span>
       </div>
       <div class="grid">
 
         <a class="card" href="mechanical.html">
           <div class="thumb"><img src="img/01-fea.jpg" alt="FEA directional deformation result"></div>
           <div class="cbody">
-            <div class="tag">FEA &middot; STRUCTURAL</div>
-            <h3>Mechanical Analysis</h3>
-            <p>Static stress and deformation studies — validating structural behaviour under load.</p>
+            <div class="tag" data-en="FEA · STRUCTURAL" data-tr="FEA · YAPISAL">FEA · STRUCTURAL</div>
+            <h3 data-en="Mechanical Analysis" data-tr="Mekanik Analiz">Mechanical Analysis</h3>
+            <p data-en="Static stress and deformation studies — validating structural behaviour under load." data-tr="Statik gerilme ve deformasyon çalışmaları — yük altında yapısal davranışın doğrulanması.">Static stress and deformation studies — validating structural behaviour under load.</p>
           </div>
         </a>
 
         <a class="card" href="design.html">
           <div class="thumb"><img src="img/02-cad.jpg" alt="CAD engine assembly render"></div>
           <div class="cbody">
-            <div class="tag">CAD &middot; ASSEMBLY</div>
-            <h3>Design</h3>
-            <p>Parametric modeling, assemblies, and motion studies — from concept to engineering drawing.</p>
+            <div class="tag" data-en="CAD · ASSEMBLY" data-tr="CAD · MONTAJ">CAD · ASSEMBLY</div>
+            <h3 data-en="Design" data-tr="Tasarım">Design</h3>
+            <p data-en="Parametric modeling, assemblies, and motion studies — from concept to engineering drawing." data-tr="Parametrik modelleme, montajlar ve hareket çalışmaları — konseptten teknik çizime.">Parametric modeling, assemblies, and motion studies — from concept to engineering drawing.</p>
           </div>
         </a>
 
         <a class="card" href="acoustics.html">
           <div class="thumb"><img src="img/03-audio.png" alt="Sonic Visualiser spectrogram analysis"></div>
           <div class="cbody">
-            <div class="tag">ACOUSTICS &middot; SIGNAL</div>
-            <h3>Audio Analysis</h3>
-            <p>Spectral and time-frequency analysis of sound — reading signals in the frequency domain.</p>
+            <div class="tag" data-en="ACOUSTICS · SIGNAL" data-tr="AKUSTİK · SİNYAL">ACOUSTICS · SIGNAL</div>
+            <h3 data-en="Audio Analysis" data-tr="Ses Analizi">Audio Analysis</h3>
+            <p data-en="Spectral and time-frequency analysis of sound — reading signals in the frequency domain." data-tr="Sesin spektral ve zaman-frekans analizi — sinyalleri frekans alanında okumak.">Spectral and time-frequency analysis of sound — reading signals in the frequency domain.</p>
           </div>
         </a>
 
         <a class="card" href="electromagnetics.html">
           <div class="thumb"><img src="img/04-maxwell.jpg" alt="Ansys Maxwell motor field simulation"></div>
           <div class="cbody">
-            <div class="tag">ANSYS MAXWELL &middot; FEMM</div>
-            <h3>Electromagnetics</h3>
-            <p>Magnetic and electromagnetic field simulation — mapping the invisible into working geometry.</p>
+            <div class="tag" data-en="ANSYS MAXWELL · FEMM" data-tr="ANSYS MAXWELL · FEMM">ANSYS MAXWELL · FEMM</div>
+            <h3 data-en="Electromagnetics" data-tr="Elektromanyetik">Electromagnetics</h3>
+            <p data-en="Magnetic and electromagnetic field simulation — mapping the invisible into working geometry." data-tr="Manyetik ve elektromanyetik alan simülasyonu — görünmeyeni çalışan geometriye dönüştürmek.">Magnetic and electromagnetic field simulation — mapping the invisible into working geometry.</p>
           </div>
         </a>
 
@@ -194,69 +206,114 @@
     </section>
     <section id="cv">
       <div class="shead">
-        <h2>Curriculum Vitae</h2><span class="rule"></span>
+        <h2 data-en="Curriculum Vitae" data-tr="Özgeçmiş">Curriculum Vitae</h2><span class="rule"></span>
       </div>
       <div class="cvgrid">
 
         <div class="cvrow">
-          <div class="cvkey">Education</div>
+          <div class="cvkey" data-en="Education" data-tr="Eğitim">Education</div>
           <div class="cvval">
-            <h3>B.Sc. Mechanical Engineering</h3>
-            <div class="sub">English Medium · First-Year Student</div>
-            <div class="score">2024 — PRESENT</div>
+            <h3 data-en="B.Sc. Mechanical Engineering" data-tr="Makine Mühendisliği Lisans">B.Sc. Mechanical Engineering</h3>
+            <div class="sub" data-en="English Medium · First-Year Student" data-tr="İngilizce · Birinci Sınıf Öğrencisi">English Medium · First-Year Student</div>
+            <div class="score" data-en="2024 — PRESENT" data-tr="2024 — DEVAM EDİYOR">2024 — PRESENT</div>
           </div>
         </div>
 
         <div class="cvrow">
-          <div class="cvkey">CAD / CAE</div>
+          <div class="cvkey" data-en="CAD / CAE" data-tr="CAD / CAE">CAD / CAE</div>
           <div class="cvval">
             <div class="skills">
-              <span>Fusion 360</span><span>FEA</span><span>Assembly</span><span>Technical Drawing</span><span>Ansys Maxwell</span><span>FEMM</span><span>CATIA</span><span>Siemens NX</span>
+              <span>Fusion 360</span><span>FEA</span><span data-en="Assembly" data-tr="Montaj">Assembly</span><span data-en="Technical Drawing" data-tr="Teknik Çizim">Technical Drawing</span><span>Ansys Maxwell</span><span>FEMM</span><span>CATIA</span><span>Siemens NX</span>
             </div>
           </div>
         </div>
 
         <div class="cvrow">
-          <div class="cvkey">Programming</div>
+          <div class="cvkey" data-en="Programming" data-tr="Programlama">Programming</div>
           <div class="cvval">
             <div class="skills"><span>Python</span><span>Arduino</span></div>
           </div>
         </div>
 
         <div class="cvrow">
-          <div class="cvkey">Competencies</div>
+          <div class="cvkey" data-en="Competencies" data-tr="Yetkinlikler">Competencies</div>
           <div class="cvval">
             <div class="skills">
-              <span>Mechanical Design</span><span>FEA</span><span>Kinematic Simulation</span><span>Electromagnetic Simulation</span><span>Acoustic Analysis</span><span>Technical Documentation</span>
+              <span data-en="Mechanical Design" data-tr="Mekanik Tasarım">Mechanical Design</span><span>FEA</span><span data-en="Kinematic Simulation" data-tr="Kinematik Simülasyon">Kinematic Simulation</span><span data-en="Electromagnetic Simulation" data-tr="Elektromanyetik Simülasyon">Electromagnetic Simulation</span><span data-en="Acoustic Analysis" data-tr="Akustik Analiz">Acoustic Analysis</span><span data-en="Technical Documentation" data-tr="Teknik Dokümantasyon">Technical Documentation</span>
             </div>
           </div>
         </div>
 
         <div class="cvrow">
-          <div class="cvkey">Languages</div>
+          <div class="cvkey" data-en="Languages" data-tr="Diller">Languages</div>
           <div class="cvval">
-            <div class="skills"><span>Turkish — Native</span><span>English — Proficient</span></div>
+            <div class="skills"><span data-en="Turkish — Native" data-tr="Türkçe — Ana Dil">Turkish — Native</span><span data-en="English — Proficient" data-tr="İngilizce — İleri Düzey">English — Proficient</span></div>
           </div>
         </div>
 
       </div>
       <div class="cvactions">
-        <a href="Ebru_Tokatli_CV_EN.pdf">Download CV (EN)</a>
-        <a href="Ebru_Tokatli_CV_TR.pdf">Download CV (TR)</a>
+        <a href="Ebru_Tokatli_CV_EN.pdf" data-en="Download CV (EN)" data-tr="CV İndir (EN)">Download CV (EN)</a>
+        <a href="Ebru_Tokatli_CV_TR.pdf" data-en="Download CV (TR)" data-tr="CV İndir (TR)">Download CV (TR)</a>
         <a href="https://www.linkedin.com/in/ebrutokatli/">LinkedIn</a>
       </div>
     </section>
 
     <section id="about">
       <div class="shead">
-        <h2>About</h2><span class="rule"></span>
+        <h2 data-en="About" data-tr="Hakkında">About</h2><span class="rule"></span>
       </div>
-      <p class="about">Mechanical engineering student specializing in electromagnetic and acoustic simulation, design, and fabrication. Focused on the analysis and physical realization of field-driven systems.</p>
+      <p class="about" data-en="Mechanical engineering student specializing in electromagnetic and acoustic simulation, design, and fabrication. Focused on the analysis and physical realization of field-driven systems." data-tr="Elektromanyetik ve akustik simülasyon, tasarım ve üretim alanlarında uzmanlaşan makine mühendisliği öğrencisi. Alan tabanlı sistemlerin analizine ve fiziksel olarak hayata geçirilmesine odaklanıyor.">Mechanical engineering student specializing in electromagnetic and acoustic simulation, design, and fabrication. Focused on the analysis and physical realization of field-driven systems.</p>
+    </section>
+
+    <section id="offtopic">
+      <div class="shead">
+        <h2 data-en="Off Topic" data-tr="Konu Dışı">Off Topic</h2><span class="rule"></span>
+      </div>
+      <div class="grid4">
+
+        <a class="card" href="comp-social-science.html">
+          <div class="thumb ph"><img src="img/off1.jpg" alt="Computational Social Science" onerror="this.style.display='none'"></div>
+          <div class="cbody">
+            <div class="tag" data-en="DATA · SOCIETY" data-tr="VERİ · TOPLUM">DATA · SOCIETY</div>
+            <h3 data-en="Computational Social Science" data-tr="Hesaplamalı Sosyal Bilim">Computational Social Science</h3>
+            <p data-en="Studying society through data, models, and simulation." data-tr="Toplumu veri, modeller ve simülasyon yoluyla incelemek.">Studying society through data, models, and simulation.</p>
+          </div>
+        </a>
+
+        <a class="card" href="reading-list.html">
+          <div class="thumb ph"><img src="img/off2.jpg" alt="Reading List" onerror="this.style.display='none'"></div>
+          <div class="cbody">
+            <div class="tag" data-en="BOOKS · NOTES" data-tr="KİTAPLAR · NOTLAR">BOOKS · NOTES</div>
+            <h3 data-en="Reading List" data-tr="Okuma Listesi">Reading List</h3>
+            <p data-en="Books I'm reading — with notes and recommendations." data-tr="Okuduğum kitaplar — notlar ve önerilerle.">Books I'm reading — with notes and recommendations.</p>
+          </div>
+        </a>
+
+        <a class="card" href="art.html">
+          <div class="thumb ph"><img src="img/off3.jpg" alt="Art" onerror="this.style.display='none'"></div>
+          <div class="cbody">
+            <div class="tag" data-en="LISTENING · GALLERY · SCENT" data-tr="DİNLEME · GALERİ · KOKU">LISTENING · GALLERY · SCENT</div>
+            <h3 data-en="Art" data-tr="Sanat">Art</h3>
+            <p data-en="A listening log, art gallery, and perfume log." data-tr="Bir dinleme günlüğü, sanat galerisi ve parfüm günlüğü.">A listening log, art gallery, and perfume log.</p>
+          </div>
+        </a>
+
+        <span class="card">
+          <div class="thumb ph"><img src="img/off4.jpg" alt="" onerror="this.style.display='none'"></div>
+          <div class="cbody">
+            <div class="tag">—</div>
+            <h3 data-en="Coming Soon" data-tr="Yakında">Coming Soon</h3>
+            <p data-en="More soon." data-tr="Yakında daha fazlası.">More soon.</p>
+          </div>
+        </span>
+
+      </div>
     </section>
     <footer id="contact">
       <div>İSTANBUL &middot; 2025&mdash;</div>
       <div>
-        <a href="mailto:ebrutokatli33@gmail.com">EMAIL</a>&nbsp;&nbsp;
+        <a href="mailto:ebrutokatli33@gmail.com" data-en="EMAIL" data-tr="E-POSTA">EMAIL</a>&nbsp;&nbsp;
         <a href="https://www.linkedin.com/in/ebrutokatli/">LINKEDIN</a>&nbsp;&nbsp;
         <a href="https://github.com/ebrutokatli">GITHUB</a>
       </div>
@@ -272,6 +329,33 @@
     });
   },{threshold:.18});
   document.querySelectorAll('.card').forEach(c=>io.observe(c));
+</script>
+
+<script>
+  function applyLang(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      var v = el.getAttribute('data-'+lang);
+      if(v!==null) el.innerHTML = v;
+    });
+    var t = document.querySelector('title');
+    if(t && t.getAttribute('data-'+lang)) document.title = t.getAttribute('data-'+lang);
+    document.querySelectorAll('.langtog [data-lang]').forEach(function(s){
+      s.classList.toggle('active', s.getAttribute('data-lang')===lang);
+    });
+    try{ localStorage.setItem('lang', lang); }catch(e){}
+  }
+  (function(){
+    var saved='en';
+    try{ saved = localStorage.getItem('lang') || 'en'; }catch(e){}
+    applyLang(saved);
+    var tog=document.getElementById('langtog');
+    if(tog) tog.addEventListener('click', function(){
+      var cur='en';
+      try{ cur = localStorage.getItem('lang') || 'en'; }catch(e){}
+      applyLang(cur==='en'?'tr':'en');
+    });
+  })();
 </script>
 </body>
 </html>

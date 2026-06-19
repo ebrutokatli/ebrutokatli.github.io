@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ebru Tokatlı — Design</title>
+<title data-en="Ebru Tokatlı — Design" data-tr="Ebru Tokatlı — Tasarım">Ebru Tokatlı — Design</title>
 <style>
   :root{
     --ink:#0a0e1a;--slate:#141a2e;--slate2:#1b2238;--line:rgba(136,147,181,.14);
@@ -19,11 +19,19 @@
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
   .wrap{position:relative;z-index:1;max-width:1140px;margin:0 auto;padding:0 32px}
   .barwrap{position:sticky;top:0;z-index:5;background:rgba(10,14,26,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-  .bar{display:flex;align-items:baseline;justify-content:space-between;padding:22px 32px;max-width:1140px;margin:0 auto}
+  .bar{display:flex;align-items:center;justify-content:space-between;padding:22px 32px;max-width:1140px;margin:0 auto}
   .name{font-family:var(--serif);font-size:1.5rem;color:var(--pale)}
   .name b{font-weight:500}
+  .navx{display:flex;gap:18px;align-items:center}
   .back{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--haze);text-decoration:none;transition:opacity .3s}
   .back:hover{opacity:.7}
+
+  .langtog{background:none;border:1px solid var(--line);border-radius:2px;color:var(--haze);font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;padding:5px 9px;cursor:pointer;display:inline-flex;gap:6px;align-items:center;transition:border-color .3s;line-height:1}
+  .langtog:hover{border-color:var(--pale)}
+  .langtog [data-lang]{opacity:.4;transition:opacity .3s}
+  .langtog [data-lang].active{opacity:1;color:var(--pale)}
+  .langtog .sep{opacity:.3}
+
   .phead{padding:48px 0 30px;border-bottom:1px solid var(--line)}
   .phead .tag{font-family:var(--mono);font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:var(--pale);margin-bottom:12px}
   .phead h1{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,4vw,3rem);color:var(--pale);margin-bottom:14px}
@@ -43,20 +51,50 @@
   <div class="barwrap">
     <div class="bar">
       <div class="name"><b>Ebru Tokatlı</b></div>
-      <a class="back" href="index.html">&larr; Back</a>
+      <div class="navx">
+        <a class="back" href="index.html" data-en="&larr; Back" data-tr="&larr; Geri">&larr; Back</a>
+        <button class="langtog" id="langtog" aria-label="Language"><span data-lang="en">EN</span><span class="sep">/</span><span data-lang="tr">TR</span></button>
+      </div>
     </div>
   </div>
   <div class="wrap">
     <div class="phead">
-      <div class="tag">CAD &middot; ASSEMBLY</div>
-      <h1>Design</h1>
-      <p>Parametric modeling, assemblies, and motion studies from concept to engineering drawing.</p>
+      <div class="tag" data-en="CAD &middot; ASSEMBLY" data-tr="CAD &middot; MONTAJ">CAD &middot; ASSEMBLY</div>
+      <h1 data-en="Design" data-tr="Tasarım">Design</h1>
+      <p data-en="Parametric modeling, assemblies, and motion studies from concept to engineering drawing." data-tr="Konseptten teknik çizime parametrik modelleme, montajlar ve hareket çalışmaları.">Parametric modeling, assemblies, and motion studies from concept to engineering drawing.</p>
     </div>
     <div class="hero"><img src="img/02-cad.jpg" alt="Design"></div>
     <div class="body">
-      <p class="upcoming">Detailed project write-ups upcoming.</p>
+      <p class="upcoming" data-en="Detailed project write-ups upcoming." data-tr="Ayrıntılı proje yazıları yakında.">Detailed project write-ups upcoming.</p>
     </div>
-    <footer>İSTANBUL &middot; <a href="index.html">Home</a></footer>
+    <footer>İSTANBUL &middot; <a href="index.html" data-en="Home" data-tr="Ana Sayfa">Home</a></footer>
   </div>
+
+<script>
+  function applyLang(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      var v = el.getAttribute('data-'+lang);
+      if(v!==null) el.innerHTML = v;
+    });
+    var t = document.querySelector('title');
+    if(t && t.getAttribute('data-'+lang)) document.title = t.getAttribute('data-'+lang);
+    document.querySelectorAll('.langtog [data-lang]').forEach(function(s){
+      s.classList.toggle('active', s.getAttribute('data-lang')===lang);
+    });
+    try{ localStorage.setItem('lang', lang); }catch(e){}
+  }
+  (function(){
+    var saved='en';
+    try{ saved = localStorage.getItem('lang') || 'en'; }catch(e){}
+    applyLang(saved);
+    var tog=document.getElementById('langtog');
+    if(tog) tog.addEventListener('click', function(){
+      var cur='en';
+      try{ cur = localStorage.getItem('lang') || 'en'; }catch(e){}
+      applyLang(cur==='en'?'tr':'en');
+    });
+  })();
+</script>
 </body>
 </html>
