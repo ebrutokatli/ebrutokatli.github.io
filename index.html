@@ -80,11 +80,15 @@
   .card.surfaced{opacity:1;transform:translateY(0)}
   .card:hover{border-color:rgba(124,108,240,.45);box-shadow:0 22px 60px -34px rgba(124,108,240,.55)}
   .thumb{
-    aspect-ratio:16/10;position:relative;
-    background:radial-gradient(120% 120% at 70% 0%,rgba(124,108,240,.22),rgba(86,184,212,.06) 45%,var(--ink) 90%);
+    aspect-ratio:16/10;position:relative;overflow:hidden;
+    background:var(--ink);
     display:flex;align-items:center;justify-content:center;
   }
-  .thumb svg{width:62%;height:62%;opacity:.55}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .6s ease,filter .6s ease;filter:saturate(.92) brightness(.92)}
+  .card:hover .thumb img{transform:scale(1.04);filter:saturate(1.05) brightness(1)}
+  /* make whole card a link */
+  a.card{text-decoration:none;color:inherit;display:block}
   .cbody{padding:20px 22px 24px}
   .cbody .tag{font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;color:var(--cyan)}
   .cbody h3{font-family:var(--serif);font-weight:500;font-size:1.4rem;margin:8px 0 8px;color:var(--pale)}
@@ -146,48 +150,101 @@
     </div>
     <section id="work">
       <div class="shead">
-        <h2>Selected Work</h2><span class="rule"></span>
+        <h2>Work</h2><span class="rule"></span>
       </div>
       <div class="grid">
-        <article class="card">
-          <div class="thumb"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="30" stroke="rgba(86,184,212,.6)" stroke-width="1"/><circle cx="50" cy="50" r="20" stroke="rgba(124,108,240,.6)" stroke-width="1"/><line x1="20" y1="50" x2="80" y2="50" stroke="rgba(223,228,240,.4)" stroke-width="1"/><line x1="50" y1="20" x2="50" y2="80" stroke="rgba(223,228,240,.4)" stroke-width="1"/></svg></div>
+
+        <a class="card" href="mechanical.html">
+          <div class="thumb"><img src="img/01-fea.jpg" alt="FEA directional deformation result"></div>
           <div class="cbody">
-            <div class="tag">UPCOMING</div>
-            <h3>Upcoming</h3>
-            <p>Project in progress.</p>
+            <div class="tag">FEA &middot; STRUCTURAL</div>
+            <h3>Mechanical Analysis</h3>
+            <p>Static stress and deformation studies — validating structural behaviour under load.</p>
           </div>
-        </article>
-        <article class="card">
-          <div class="thumb"><svg viewBox="0 0 100 100" fill="none"><rect x="22" y="34" width="40" height="32" stroke="rgba(124,108,240,.6)" stroke-width="1"/><rect x="34" y="22" width="40" height="32" stroke="rgba(86,184,212,.6)" stroke-width="1"/><line x1="10" y1="68" x2="78" y2="68" stroke="rgba(223,228,240,.4)" stroke-width="1"/></svg></div>
+        </a>
+
+        <a class="card" href="design.html">
+          <div class="thumb"><img src="img/02-cad.jpg" alt="CAD engine assembly render"></div>
           <div class="cbody">
-            <div class="tag">UPCOMING</div>
-            <h3>Upcoming</h3>
-            <p>Project in progress.</p>
+            <div class="tag">CAD &middot; ASSEMBLY</div>
+            <h3>Design</h3>
+            <p>Parametric modeling, assemblies, and motion studies — from concept to engineering drawing.</p>
           </div>
-        </article>
-        <article class="card">
-          <div class="thumb"><svg viewBox="0 0 100 100" fill="none"><path d="M20 70 Q35 30 50 50 T80 30" stroke="rgba(86,184,212,.6)" stroke-width="1"/><path d="M20 76 Q35 40 50 60 T80 42" stroke="rgba(124,108,240,.5)" stroke-width="1"/></svg></div>
+        </a>
+
+        <a class="card" href="acoustics.html">
+          <div class="thumb"><img src="img/03-audio.png" alt="Sonic Visualiser spectrogram analysis"></div>
           <div class="cbody">
-            <div class="tag">UPCOMING</div>
-            <h3>Upcoming</h3>
-            <p>Project in progress.</p>
+            <div class="tag">ACOUSTICS &middot; SIGNAL</div>
+            <h3>Audio Analysis</h3>
+            <p>Spectral and time-frequency analysis of sound — reading signals in the frequency domain.</p>
           </div>
-        </article>
-        <article class="card">
-          <div class="thumb"><svg viewBox="0 0 100 100" fill="none"><polygon points="50,22 74,40 66,72 34,72 26,40" stroke="rgba(124,108,240,.6)" stroke-width="1"/><circle cx="50" cy="50" r="8" stroke="rgba(86,184,212,.6)" stroke-width="1"/></svg></div>
+        </a>
+
+        <a class="card" href="electromagnetics.html">
+          <div class="thumb"><img src="img/04-maxwell.jpg" alt="Ansys Maxwell motor field simulation"></div>
           <div class="cbody">
-            <div class="tag">UPCOMING</div>
-            <h3>Upcoming</h3>
-            <p>Project in progress.</p>
+            <div class="tag">ANSYS MAXWELL &middot; FEMM</div>
+            <h3>Electromagnetics</h3>
+            <p>Magnetic and electromagnetic field simulation — mapping the invisible into working geometry.</p>
           </div>
-        </article>
+        </a>
+
       </div>
     </section>
     <section id="cv">
       <div class="shead">
         <h2>Curriculum Vitae</h2><span class="rule"></span>
       </div>
-      <p class="about">Upcoming.</p>
+      <div class="cvgrid">
+
+        <div class="cvrow">
+          <div class="cvkey">Education</div>
+          <div class="cvval">
+            <h3>B.Sc. Mechanical Engineering</h3>
+            <div class="sub">English Medium · First-Year Student</div>
+            <div class="score">2024 — PRESENT</div>
+          </div>
+        </div>
+
+        <div class="cvrow">
+          <div class="cvkey">CAD / CAE</div>
+          <div class="cvval">
+            <div class="skills">
+              <span>Fusion 360</span><span>FEA</span><span>Assembly</span><span>Technical Drawing</span><span>Ansys Maxwell</span><span>FEMM</span><span>CATIA</span><span>Siemens NX</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cvrow">
+          <div class="cvkey">Programming</div>
+          <div class="cvval">
+            <div class="skills"><span>Python</span><span>Arduino</span></div>
+          </div>
+        </div>
+
+        <div class="cvrow">
+          <div class="cvkey">Competencies</div>
+          <div class="cvval">
+            <div class="skills">
+              <span>Mechanical Design</span><span>FEA</span><span>Kinematic Simulation</span><span>Electromagnetic Simulation</span><span>Acoustic Analysis</span><span>Technical Documentation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cvrow">
+          <div class="cvkey">Languages</div>
+          <div class="cvval">
+            <div class="skills"><span>Turkish — Native</span><span>English — Proficient</span></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="cvactions">
+        <a href="Ebru_Tokatli_CV_EN.pdf">Download CV (EN)</a>
+        <a href="Ebru_Tokatli_CV_TR.pdf">Download CV (TR)</a>
+        <a href="https://www.linkedin.com/in/ebrutokatli/">LinkedIn</a>
+      </div>
     </section>
 
     <section id="about">
@@ -199,8 +256,8 @@
     <footer id="contact">
       <div>İSTANBUL &middot; 2025&mdash;</div>
       <div>
-        <a href="mailto:you@email.com">EMAIL</a>&nbsp;&nbsp;
-        <a href="#">LINKEDIN</a>&nbsp;&nbsp;
+        <a href="mailto:ebrutokatli33@gmail.com">EMAIL</a>&nbsp;&nbsp;
+        <a href="https://www.linkedin.com/in/ebrutokatli/">LINKEDIN</a>&nbsp;&nbsp;
         <a href="https://github.com/ebrutokatli">GITHUB</a>
       </div>
     </footer>

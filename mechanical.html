@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ebru Tokatlı — Mechanical Analysis</title>
+<style>
+  :root{
+    --ink:#0a0e1a;--slate:#141a2e;--slate2:#1b2238;--line:rgba(136,147,181,.14);
+    --haze:#eef2f8;--pale:#eef2f8;--lumen:#eef2f8;--cyan:#eef2f8;
+    --serif:"Times New Roman",Times,serif;--sans:"Times New Roman",Times,serif;--mono:"Times New Roman",Times,serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--ink);color:var(--pale);font-family:var(--sans);font-size:17px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(50vw 55vw at 82% 8%, rgba(124,108,240,.12), transparent 60%),radial-gradient(55vw 55vw at 8% 70%, rgba(86,184,212,.09), transparent 62%)}
+  body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{position:relative;z-index:1;max-width:1140px;margin:0 auto;padding:0 32px}
+  .barwrap{position:sticky;top:0;z-index:5;background:rgba(10,14,26,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:baseline;justify-content:space-between;padding:22px 32px;max-width:1140px;margin:0 auto}
+  .name{font-family:var(--serif);font-size:1.5rem;color:var(--pale)}
+  .name b{font-weight:500}
+  .back{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--haze);text-decoration:none;transition:opacity .3s}
+  .back:hover{opacity:.7}
+  .phead{padding:48px 0 30px;border-bottom:1px solid var(--line)}
+  .phead .tag{font-family:var(--mono);font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:var(--pale);margin-bottom:12px}
+  .phead h1{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,4vw,3rem);color:var(--pale);margin-bottom:14px}
+  .phead p{max-width:60ch;color:var(--haze);font-size:1.05rem}
+  .hero{margin:34px 0;border:1px solid var(--line);border-radius:2px;overflow:hidden;background:var(--ink)}
+  .hero img{width:100%;display:block}
+  .body{padding:10px 0 30px;max-width:64ch}
+  .body h2{font-family:var(--serif);font-weight:500;font-size:1.5rem;margin:30px 0 12px;color:var(--pale)}
+  .body p{color:var(--haze);margin-bottom:14px}
+  .upcoming{font-family:var(--serif);font-size:1.3rem;color:var(--pale);padding:30px 0}
+  footer{margin-top:50px;padding:34px 0 56px;border-top:1px solid var(--line);font-family:var(--mono);font-size:.85rem;color:var(--haze)}
+  footer a{color:var(--pale);text-decoration:none;border-bottom:1px solid var(--pale);padding-bottom:2px}
+  @media(max-width:720px){.bar{padding:18px 20px}}
+</style>
+</head>
+<body>
+  <div class="barwrap">
+    <div class="bar">
+      <div class="name"><b>Ebru Tokatlı</b></div>
+      <a class="back" href="index.html">&larr; Back</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="phead">
+      <div class="tag">FEA &middot; STRUCTURAL</div>
+      <h1>Mechanical Analysis</h1>
+      <p>Static stress and deformation studies validating structural behaviour under load.</p>
+    </div>
+    <div class="hero"><img src="img/01-fea.jpg" alt="Mechanical Analysis"></div>
+    <div class="body">
+      <p class="upcoming">Detailed project write-ups upcoming.</p>
+    </div>
+    <footer>İSTANBUL &middot; <a href="index.html">Home</a></footer>
+  </div>
+</body>
+</html>
