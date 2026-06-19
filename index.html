@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ebru Tokatlı — Engineering Portfolio</title>
+<style>
+  :root{
+    --ink:#0a0e1a;
+    --slate:#141a2e;
+    --slate2:#1b2238;
+    --line:rgba(136,147,181,.14);
+    --haze:#a9b4d0;
+    --pale:#eef2f8;
+    --lumen:#7c6cf0;
+    --cyan:#56b8d4;
+    --serif:"Times New Roman",Times,serif;
+    --sans:"Times New Roman",Times,serif;
+    --mono:"Times New Roman",Times,serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink);
+    color:var(--pale);
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.7;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(50vw 55vw at 82% 8%, rgba(124,108,240,.12), transparent 60%),
+      radial-gradient(55vw 55vw at 8% 70%, rgba(86,184,212,.09), transparent 62%);
+  }
+  body::after{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{position:relative;z-index:1;max-width:1140px;margin:0 auto;padding:0 32px}
+  .barwrap{
+    position:sticky;top:0;z-index:5;
+    background:rgba(10,14,26,.82);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .bar{
+    display:flex;align-items:baseline;justify-content:space-between;
+    padding:22px 32px;max-width:1140px;margin:0 auto;
+  }
+  .name{font-family:var(--serif);font-size:1.5rem;letter-spacing:.01em;color:var(--pale)}
+  .name b{font-weight:500}
+  nav{display:flex;gap:30px}
+  nav a{
+    font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--haze);text-decoration:none;transition:color .3s;
+  }
+  nav a:hover{color:var(--cyan)}
+  .intro{padding:48px 0 36px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;border-bottom:1px solid var(--line)}
+  .intro h1{
+    font-family:var(--serif);font-weight:400;
+    font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.18;max-width:30ch;color:var(--pale);
+  }
+  .intro h1 em{font-style:normal;color:var(--pale)}
+  .intro .meta{font-family:var(--mono);font-size:.85rem;color:var(--haze);text-align:right;line-height:2;white-space:nowrap}
+  .intro .meta span{color:var(--pale)}
+  .shead{display:flex;align-items:baseline;gap:16px;margin:54px 0 26px}
+  .shead .idx{font-family:var(--mono);font-size:.85rem;color:var(--lumen)}
+  .shead h2{font-family:var(--serif);font-weight:400;font-size:1.55rem;color:var(--pale)}
+  .shead .rule{flex:1;height:1px;background:var(--line)}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .card{
+    background:linear-gradient(165deg,var(--slate2),var(--slate));
+    border:1px solid var(--line);border-radius:2px;overflow:hidden;
+    opacity:0;transform:translateY(26px);
+    transition:opacity .9s ease,transform .9s cubic-bezier(.16,.7,.3,1),border-color .5s,box-shadow .5s;
+  }
+  .card.surfaced{opacity:1;transform:translateY(0)}
+  .card:hover{border-color:rgba(124,108,240,.45);box-shadow:0 22px 60px -34px rgba(124,108,240,.55)}
+  .thumb{
+    aspect-ratio:16/10;position:relative;
+    background:radial-gradient(120% 120% at 70% 0%,rgba(124,108,240,.22),rgba(86,184,212,.06) 45%,var(--ink) 90%);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .thumb svg{width:62%;height:62%;opacity:.55}
+  .cbody{padding:20px 22px 24px}
+  .cbody .tag{font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;color:var(--cyan)}
+  .cbody h3{font-family:var(--serif);font-weight:500;font-size:1.4rem;margin:8px 0 8px;color:var(--pale)}
+  .cbody p{color:var(--haze);font-size:1rem;line-height:1.6}
+  /* CV */
+  .cvgrid{display:grid;grid-template-columns:170px 1fr;gap:0 32px}
+  .cvrow{display:contents}
+  .cvkey{font-family:var(--mono);font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;color:var(--lumen);padding:18px 0;border-top:1px solid var(--line)}
+  .cvval{padding:18px 0;border-top:1px solid var(--line)}
+  .cvval h3{font-family:var(--serif);font-weight:500;font-size:1.25rem;color:var(--pale);margin-bottom:3px}
+  .cvval .sub{font-size:.96rem;color:var(--haze);margin-bottom:2px}
+  .cvval .score{font-family:var(--mono);font-size:.82rem;color:var(--cyan);letter-spacing:.06em}
+  .cvval ul{list-style:none;margin-top:10px}
+  .cvval ul li{position:relative;padding-left:18px;color:var(--haze);font-size:1rem;margin-bottom:6px;line-height:1.5}
+  .cvval ul li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:1px;background:var(--cyan)}
+  .cvval .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+  .cvval .skills span{font-family:var(--mono);font-size:.82rem;color:var(--haze);border:1px solid var(--line);border-radius:2px;padding:5px 9px}
+  .cvactions{margin-top:22px;display:flex;gap:14px;flex-wrap:wrap}
+  .cvactions a{font-family:var(--mono);font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;color:var(--pale);text-decoration:none;border:1px solid var(--lumen);border-radius:2px;padding:10px 16px;transition:all .3s}
+  .cvactions a:hover{border-color:var(--cyan);color:var(--cyan)}
+  @media(max-width:720px){.cvgrid{grid-template-columns:1fr;gap:0}.cvkey{padding:16px 0 4px;border-top:1px solid var(--line)}.cvval{padding:4px 0 16px;border-top:none}}
+  .about{max-width:58ch;font-family:var(--serif);font-size:1.3rem;line-height:1.6;color:var(--pale)}
+  .about em{font-style:italic;color:var(--cyan)}
+  footer{margin-top:60px;padding:36px 0 56px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;
+    font-family:var(--mono);font-size:.85rem;color:var(--haze)}
+  footer a{color:var(--pale);text-decoration:none;border-bottom:1px solid var(--lumen);padding-bottom:2px}
+  footer a:hover{color:var(--cyan);border-color:var(--cyan)}
+  @media(max-width:720px){
+    .grid{grid-template-columns:1fr}
+    .intro{grid-template-columns:1fr}
+    .intro .meta{text-align:left}
+    nav{gap:18px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .card{opacity:1;transform:none;transition:border-color .5s,box-shadow .5s}
+  }
+</style>
+</head>
+<body>
+  <div class="barwrap">
+    <div class="bar">
+      <div class="name"><b>Ebru Tokatlı</b></div>
+      <nav>
+        <a href="#work">Work</a>
+        <a href="#cv">CV</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="intro">
+      <h1>Mechanical engineering, <em>electromagnetics</em>, <em>acoustics</em>.</h1>
+      <div class="meta">
+        İSTANBUL<br>
+        SIMULATION · <span>DESIGN</span> · FABRICATION
+      </div>
+    </div>
+    <section id="work">
+      <div class="shead">
+        <span class="idx">01</span><h2>Selected Work</h2><span class="rule"></span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="thumb"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="30" stroke="rgba(86,184,212,.6)" stroke-width="1"/><circle cx="50" cy="50" r="20" stroke="rgba(124,108,240,.6)" stroke-width="1"/><line x1="20" y1="50" x2="80" y2="50" stroke="rgba(223,228,240,.4)" stroke-width="1"/><line x1="50" y1="20" x2="50" y2="80" stroke="rgba(223,228,240,.4)" stroke-width="1"/></svg></div>
+          <div class="cbody">
+            <div class="tag">UPCOMING</div>
+            <h3>Upcoming</h3>
+            <p>Project in progress.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><svg viewBox="0 0 100 100" fill="none"><rect x="22" y="34" width="40" height="32" stroke="rgba(124,108,240,.6)" stroke-width="1"/><rect x="34" y="22" width="40" height="32" stroke="rgba(86,184,212,.6)" stroke-width="1"/><line x1="10" y1="68" x2="78" y2="68" stroke="rgba(223,228,240,.4)" stroke-width="1"/></svg></div>
+          <div class="cbody">
+            <div class="tag">UPCOMING</div>
+            <h3>Upcoming</h3>
+            <p>Project in progress.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><svg viewBox="0 0 100 100" fill="none"><path d="M20 70 Q35 30 50 50 T80 30" stroke="rgba(86,184,212,.6)" stroke-width="1"/><path d="M20 76 Q35 40 50 60 T80 42" stroke="rgba(124,108,240,.5)" stroke-width="1"/></svg></div>
+          <div class="cbody">
+            <div class="tag">UPCOMING</div>
+            <h3>Upcoming</h3>
+            <p>Project in progress.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><svg viewBox="0 0 100 100" fill="none"><polygon points="50,22 74,40 66,72 34,72 26,40" stroke="rgba(124,108,240,.6)" stroke-width="1"/><circle cx="50" cy="50" r="8" stroke="rgba(86,184,212,.6)" stroke-width="1"/></svg></div>
+          <div class="cbody">
+            <div class="tag">UPCOMING</div>
+            <h3>Upcoming</h3>
+            <p>Project in progress.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section id="cv">
+      <div class="shead">
+        <span class="idx">02</span><h2>Curriculum Vitae</h2><span class="rule"></span>
+      </div>
+      <p class="about">Upcoming.</p>
+    </section>
+
+    <section id="about">
+      <div class="shead">
+        <span class="idx">03</span><h2>About</h2><span class="rule"></span>
+      </div>
+      <p class="about">Mechanical engineering student specializing in electromagnetic and acoustic simulation, design, and fabrication. Focused on the analysis and physical realization of field-driven systems.</p>
+    </section>
+    <footer id="contact">
+      <div>İSTANBUL &middot; 2025&mdash;</div>
+      <div>
+        <a href="mailto:you@email.com">EMAIL</a>&nbsp;&nbsp;
+        <a href="#">LINKEDIN</a>&nbsp;&nbsp;
+        <a href="https://github.com/ebrutokatli">GITHUB</a>
+      </div>
+    </footer>
+  </div>
+<script>
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){
+        setTimeout(()=>e.target.classList.add('surfaced'), i*120);
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.18});
+  document.querySelectorAll('.card').forEach(c=>io.observe(c));
+</script>
+</body>
+</html>
