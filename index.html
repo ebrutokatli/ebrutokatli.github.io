@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ebru Tokatlı — mechanical engineering student working on electromagnetic simulation and EMC for electric vehicles.">
 <title data-en="Ebru Tokatlı — Engineering Portfolio" data-tr="Ebru Tokatlı — Mühendislik Portföyü">Ebru Tokatlı — Engineering Portfolio</title>
 <style>
   :root{
@@ -10,13 +11,13 @@
     --slate:#141a2e;
     --slate2:#1b2238;
     --line:rgba(136,147,181,.14);
-    --haze:#eef2f8;
+    --haze:#9aa4c4;
     --pale:#eef2f8;
-    --lumen:#eef2f8;
-    --cyan:#eef2f8;
+    --lumen:#7c6cf0;
+    --cyan:#56b8d4;
     --serif:"Times New Roman",Times,serif;
     --sans:"Times New Roman",Times,serif;
-    --mono:"Times New Roman",Times,serif;
+    --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -65,44 +66,64 @@
   .langtog [data-lang].active{opacity:1;color:var(--pale)}
   .langtog .sep{opacity:.3}
 
-  .intro{padding:48px 0 36px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;border-bottom:1px solid var(--line)}
+  .intro{padding:56px 0 40px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;border-bottom:1px solid var(--line)}
   .intro h1{
     font-family:var(--serif);font-weight:400;
-    font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.18;max-width:30ch;color:var(--pale);
+    font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.18;max-width:32ch;color:var(--pale);
   }
-  .intro h1 em{font-style:normal;color:var(--pale)}
-  .intro .meta{font-family:var(--mono);font-size:.85rem;color:var(--haze);text-align:right;line-height:2;white-space:nowrap}
+  .intro h1 em{font-style:normal;color:var(--cyan)}
+  .intro .meta{font-family:var(--mono);font-size:.8rem;color:var(--haze);text-align:right;line-height:2.1;white-space:nowrap;letter-spacing:.04em}
   .intro .meta span{color:var(--pale)}
-  .shead{display:flex;align-items:baseline;gap:16px;margin:54px 0 26px}
+
+  .shead{display:flex;align-items:baseline;gap:16px;margin:64px 0 30px}
   .shead .idx{font-family:var(--mono);font-size:.85rem;color:var(--lumen)}
   .shead h2{font-family:var(--serif);font-weight:400;font-size:1.55rem;color:var(--pale)}
   .shead .rule{flex:1;height:1px;background:var(--line)}
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-  .thumb.ph{background:radial-gradient(120% 120% at 70% 0%,rgba(124,108,240,.22),rgba(86,184,212,.06) 45%,var(--ink) 90%)}
-  span.card{cursor:default}
-  span.card:hover{border-color:var(--line);box-shadow:none}
-  .card{
+
+  .lead{max-width:60ch;color:var(--haze);font-size:1.05rem;margin:-6px 0 30px}
+
+  /* ---- Projects ---- */
+  .projects{display:flex;flex-direction:column;gap:22px}
+  .project{
+    display:grid;grid-template-columns:minmax(0,300px) 1fr;
     background:linear-gradient(165deg,var(--slate2),var(--slate));
-    border:1px solid var(--line);border-radius:2px;overflow:hidden;
+    border:1px solid var(--line);border-radius:3px;overflow:hidden;
     opacity:0;transform:translateY(26px);
     transition:opacity .9s ease,transform .9s cubic-bezier(.16,.7,.3,1),border-color .5s,box-shadow .5s;
   }
-  .card.surfaced{opacity:1;transform:translateY(0)}
-  .card:hover{border-color:rgba(124,108,240,.45);box-shadow:0 22px 60px -34px rgba(124,108,240,.55)}
-  .thumb{
-    aspect-ratio:16/10;position:relative;overflow:hidden;
-    background:var(--ink);
-    display:flex;align-items:center;justify-content:center;
+  .project.surfaced{opacity:1;transform:translateY(0)}
+  .project:hover{border-color:rgba(124,108,240,.4);box-shadow:0 22px 60px -34px rgba(124,108,240,.5)}
+  .project-media{
+    position:relative;min-height:200px;background:var(--ink);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+    background-image:radial-gradient(120% 120% at 70% 0%,rgba(124,108,240,.22),rgba(86,184,212,.06) 45%,var(--ink) 90%);
   }
-  .thumb img{width:100%;height:100%;object-fit:cover;display:block;
-    transition:transform .6s ease,filter .6s ease;filter:saturate(.92) brightness(.92)}
-  .card:hover .thumb img{transform:scale(1.04);filter:saturate(1.05) brightness(1)}
-  a.card{text-decoration:none;color:inherit;display:block}
-  .cbody{padding:20px 22px 24px}
-  .cbody .tag{font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;color:var(--cyan)}
-  .cbody h3{font-family:var(--serif);font-weight:500;font-size:1.4rem;margin:8px 0 8px;color:var(--pale)}
-  .cbody p{color:var(--haze);font-size:1rem;line-height:1.6}
+  .project-media img{width:100%;height:100%;object-fit:cover;display:block}
+  .project-media .ph{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;color:var(--haze);text-align:center;padding:0 20px}
+  .project-body{padding:26px 28px 30px}
+  .status{
+    display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;
+    text-transform:uppercase;padding:4px 9px;border-radius:2px;margin-bottom:12px;
+  }
+  .status.progress{color:var(--cyan);border:1px solid rgba(86,184,212,.4)}
+  .status.planned{color:var(--haze);border:1px solid var(--line)}
+  .project-body h3{font-family:var(--serif);font-weight:500;font-size:1.5rem;color:var(--pale);margin-bottom:6px}
+  .project-body .summary{color:var(--haze);font-size:1.02rem;margin-bottom:18px}
+  .project-body dl{display:grid;grid-template-columns:110px 1fr;gap:0}
+  .project-body dt{
+    font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--lumen);padding:11px 0;border-top:1px solid var(--line);
+  }
+  .project-body dd{padding:11px 0;border-top:1px solid var(--line);color:var(--haze);font-size:.98rem;line-height:1.55}
+  @media(max-width:760px){
+    .project{grid-template-columns:1fr}
+    .project-media{min-height:160px}
+    .project-body dl{grid-template-columns:1fr}
+    .project-body dt{padding:12px 0 2px;border-top:1px solid var(--line)}
+    .project-body dd{padding:2px 0 12px;border-top:none}
+  }
+
+  /* ---- CV / Skills ---- */
   .cvgrid{display:grid;grid-template-columns:170px 1fr;gap:0 32px}
   .cvrow{display:contents}
   .cvkey{font-family:var(--mono);font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;color:var(--lumen);padding:18px 0;border-top:1px solid var(--line)}
@@ -110,31 +131,29 @@
   .cvval h3{font-family:var(--serif);font-weight:500;font-size:1.25rem;color:var(--pale);margin-bottom:3px}
   .cvval .sub{font-size:.96rem;color:var(--haze);margin-bottom:2px}
   .cvval .score{font-family:var(--mono);font-size:.82rem;color:var(--cyan);letter-spacing:.06em}
-  .cvval ul{list-style:none;margin-top:10px}
-  .cvval ul li{position:relative;padding-left:18px;color:var(--haze);font-size:1rem;margin-bottom:6px;line-height:1.5}
-  .cvval ul li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:1px;background:var(--cyan)}
-  .cvval .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
-  .cvval .skills span{font-family:var(--mono);font-size:.82rem;color:var(--haze);border:1px solid var(--line);border-radius:2px;padding:5px 9px}
-  .cvactions{margin-top:22px;display:flex;gap:14px;flex-wrap:wrap}
+  .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+  .skills span{font-family:var(--mono);font-size:.82rem;color:var(--haze);border:1px solid var(--line);border-radius:2px;padding:5px 9px}
+  .skills.learning span{color:var(--cyan);border-color:rgba(86,184,212,.35)}
+  .cvactions{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap}
   .cvactions a{font-family:var(--mono);font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;color:var(--pale);text-decoration:none;border:1px solid var(--lumen);border-radius:2px;padding:10px 16px;transition:all .3s}
   .cvactions a:hover{border-color:var(--cyan);color:var(--cyan)}
   @media(max-width:720px){.cvgrid{grid-template-columns:1fr;gap:0}.cvkey{padding:16px 0 4px;border-top:1px solid var(--line)}.cvval{padding:4px 0 16px;border-top:none}}
-  .about{max-width:58ch;font-family:var(--serif);font-size:1.3rem;line-height:1.6;color:var(--pale)}
+
+  .about{max-width:60ch;font-family:var(--serif);font-size:1.3rem;line-height:1.6;color:var(--pale)}
   .about em{font-style:italic;color:var(--cyan)}
-  footer{margin-top:60px;padding:36px 0 56px;border-top:1px solid var(--line);
+
+  footer{margin-top:70px;padding:36px 0 56px;border-top:1px solid var(--line);
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;
     font-family:var(--mono);font-size:.85rem;color:var(--haze)}
   footer a{color:var(--pale);text-decoration:none;border-bottom:1px solid var(--lumen);padding-bottom:2px}
   footer a:hover{color:var(--cyan);border-color:var(--cyan)}
   @media(max-width:720px){
-    .grid{grid-template-columns:1fr}
-    .grid4{grid-template-columns:repeat(2,1fr)}
     .intro{grid-template-columns:1fr}
     .intro .meta{text-align:left}
     nav{gap:16px}
   }
   @media(prefers-reduced-motion:reduce){
-    .card{opacity:1;transform:none;transition:border-color .5s,box-shadow .5s}
+    .project{opacity:1;transform:none;transition:border-color .5s,box-shadow .5s}
   }
 </style>
 </head>
@@ -143,70 +162,99 @@
     <div class="bar">
       <div class="name"><b>Ebru Tokatlı</b></div>
       <nav>
-        <a href="#work" data-en="Work" data-tr="Çalışmalar">Work</a>
-        <a href="#cv" data-en="CV" data-tr="Özgeçmiş">CV</a>
+        <a href="#work" data-en="Projects" data-tr="Projeler">Projects</a>
         <a href="#about" data-en="About" data-tr="Hakkında">About</a>
-        <a href="#offtopic" data-en="Off Topic" data-tr="Konu Dışı">Off Topic</a>
+        <a href="#cv" data-en="Skills" data-tr="Yetenekler">Skills</a>
         <a href="#contact" data-en="Contact" data-tr="İletişim">Contact</a>
         <button class="langtog" id="langtog" aria-label="Language"><span data-lang="en">EN</span><span class="sep">/</span><span data-lang="tr">TR</span></button>
       </nav>
     </div>
   </div>
+
   <div class="wrap">
+
+    <!-- ============ HERO ============ -->
     <div class="intro">
-      <h1 data-en="Mechanical engineering, <em>electromagnetics</em>, <em>acoustics</em>." data-tr="Makine mühendisliği, <em>elektromanyetik</em>, <em>akustik</em>.">Mechanical engineering, <em>electromagnetics</em>, <em>acoustics</em>.</h1>
-      <div class="meta" data-en="İSTANBUL<br>SIMULATION · <span>DESIGN</span> · FABRICATION" data-tr="İSTANBUL<br>SİMÜLASYON · <span>TASARIM</span> · ÜRETİM">
+      <h1 data-en="Mechanical engineering student working on <em>electromagnetic simulation</em> and <em>EMC</em> for electric vehicles." data-tr="Elektrikli araçlar için <em>elektromanyetik simülasyon</em> ve <em>EMC</em> üzerine çalışan makine mühendisliği öğrencisi.">Mechanical engineering student working on <em>electromagnetic simulation</em> and <em>EMC</em> for electric vehicles.</h1>
+      <div class="meta" data-en="İSTANBUL<br>ANSYS MAXWELL · Q3D<br>MOTOR VALIDATION<br>EMI / <span>ISOLATION</span>" data-tr="İSTANBUL<br>ANSYS MAXWELL · Q3D<br>MOTOR DOĞRULAMA<br>EMI / <span>İZOLASYON</span>">
         İSTANBUL<br>
-        SIMULATION · <span>DESIGN</span> · FABRICATION
+        ANSYS MAXWELL · Q3D<br>
+        MOTOR VALIDATION<br>
+        EMI / <span>ISOLATION</span>
       </div>
     </div>
+
+    <!-- ============ PROJECTS ============ -->
     <section id="work">
       <div class="shead">
-        <h2 data-en="Work" data-tr="Çalışmalar">Work</h2><span class="rule"></span>
+        <h2 data-en="Projects" data-tr="Projeler">Projects</h2><span class="rule"></span>
       </div>
-      <div class="grid">
+      <p class="lead" data-en="A working portfolio that grows with my simulation work. Each completed analysis from the electric-vehicle team and my current EMC/motor bootcamp becomes an entry here." data-tr="Simülasyon çalışmalarımla birlikte büyüyen, aktif bir portfolyo. Elektrikli araç takımından ve şu anki EMC/motor bootcamp'imden tamamladığım her analiz buraya bir kayıt olarak ekleniyor.">A working portfolio that grows with my simulation work. Each completed analysis from the electric-vehicle team and my current EMC/motor bootcamp becomes an entry here.</p>
 
-        <a class="card" href="mechanical.html">
-          <div class="thumb"><img src="img/01-fea.jpg" alt="FEA directional deformation result"></div>
-          <div class="cbody">
-            <div class="tag" data-en="FEA · STRUCTURAL" data-tr="FEA · YAPISAL">FEA · STRUCTURAL</div>
-            <h3 data-en="Mechanical Analysis" data-tr="Mekanik Analiz">Mechanical Analysis</h3>
-            <p data-en="Static stress and deformation studies — validating structural behaviour under load." data-tr="Statik gerilme ve deformasyon çalışmaları — yük altında yapısal davranışın doğrulanması.">Static stress and deformation studies — validating structural behaviour under load.</p>
-          </div>
-        </a>
+      <div class="projects">
 
-        <a class="card" href="design.html">
-          <div class="thumb"><img src="img/02-cad.jpg" alt="CAD engine assembly render"></div>
-          <div class="cbody">
-            <div class="tag" data-en="CAD · ASSEMBLY" data-tr="CAD · MONTAJ">CAD · ASSEMBLY</div>
-            <h3 data-en="Design" data-tr="Tasarım">Design</h3>
-            <p data-en="Parametric modeling, assemblies, and motion studies — from concept to engineering drawing." data-tr="Parametrik modelleme, montajlar ve hareket çalışmaları — konseptten teknik çizime.">Parametric modeling, assemblies, and motion studies — from concept to engineering drawing.</p>
+        <!-- PROJECT 1 — real, in progress.
+             TODO(Ebru): when you have the efficiency-map screenshot, save it to img/motor-efficiency.jpg
+             and replace the <div class="ph"> below with:
+             <img src="img/motor-efficiency.jpg" alt="Motor efficiency map from ANSYS Maxwell"> -->
+        <article class="project">
+          <div class="project-media">
+            <span class="ph" data-en="Efficiency map — coming soon" data-tr="Verim haritası — yakında">Efficiency map — coming soon</span>
           </div>
-        </a>
+          <div class="project-body">
+            <span class="status progress" data-en="In Progress" data-tr="Devam Ediyor">In Progress</span>
+            <h3 data-en="Motor Efficiency Mapping" data-tr="Motor Verim Haritalama">Motor Efficiency Mapping</h3>
+            <p class="summary" data-en="Recovering a purchased traction motor's real efficiency at operating points the datasheet never covered." data-tr="Satın alınan bir tahrik motorunun, datasheet'te yer almayan gerçek çalışma noktalarındaki verimini elde etmek.">Recovering a purchased traction motor's real efficiency at operating points the datasheet never covered.</p>
+            <dl>
+              <dt data-en="Problem" data-tr="Problem">Problem</dt>
+              <dd data-en="The traction motor we sourced only listed nominal figures — no efficiency data at our actual load and speed points." data-tr="Temin ettiğimiz tahrik motorunun datasheet'inde yalnızca nominal değerler vardı — gerçek yük ve hız noktalarımızdaki verim verisi yoktu.">The traction motor we sourced only listed nominal figures — no efficiency data at our actual load and speed points.</dd>
+              <dt data-en="Approach" data-tr="Yaklaşım">Approach</dt>
+              <dd data-en="Building a 2D finite-element model in ANSYS Maxwell — refining the air-gap mesh and sweeping operating points to produce a full efficiency map and cogging-torque profile." data-tr="ANSYS Maxwell'de 2D sonlu elemanlar modeli kurmak — hava aralığı mesh'ini iyileştirip çalışma noktalarını tarayarak tam bir verim haritası ve cogging tork profili üretmek.">Building a 2D finite-element model in ANSYS Maxwell — refining the air-gap mesh and sweeping operating points to produce a full efficiency map and cogging-torque profile.</dd>
+              <dt data-en="Result" data-tr="Sonuç">Result</dt>
+              <dd data-en="Efficiency map and cogging-torque results — in progress, to be added." data-tr="Verim haritası ve cogging tork sonuçları — devam ediyor, eklenecek.">Efficiency map and cogging-torque results — in progress, to be added.</dd>
+              <dt data-en="Learned" data-tr="Öğrenilen">Learned</dt>
+              <dd data-en="How air-gap mesh quality drives the accuracy of torque and loss predictions." data-tr="Hava aralığı mesh kalitesinin tork ve kayıp tahminlerinin doğruluğunu nasıl belirlediği.">How air-gap mesh quality drives the accuracy of torque and loss predictions.</dd>
+            </dl>
+          </div>
+        </article>
 
-        <a class="card" href="acoustics.html">
-          <div class="thumb"><img src="img/03-audio.png" alt="Sonic Visualiser spectrogram analysis"></div>
-          <div class="cbody">
-            <div class="tag" data-en="ACOUSTICS · SIGNAL" data-tr="AKUSTİK · SİNYAL">ACOUSTICS · SIGNAL</div>
-            <h3 data-en="Audio Analysis" data-tr="Ses Analizi">Audio Analysis</h3>
-            <p data-en="Spectral and time-frequency analysis of sound — reading signals in the frequency domain." data-tr="Sesin spektral ve zaman-frekans analizi — sinyalleri frekans alanında okumak.">Spectral and time-frequency analysis of sound — reading signals in the frequency domain.</p>
+        <!-- PROJECT 2 — planned / bootcamp output -->
+        <article class="project">
+          <div class="project-media">
+            <span class="ph" data-en="Isolation & EMI study — coming soon" data-tr="İzolasyon & EMI çalışması — yakında">Isolation &amp; EMI study — coming soon</span>
           </div>
-        </a>
-
-        <a class="card" href="electromagnetics.html">
-          <div class="thumb"><img src="img/04-maxwell.jpg" alt="Ansys Maxwell motor field simulation"></div>
-          <div class="cbody">
-            <div class="tag" data-en="ANSYS MAXWELL · FEMM" data-tr="ANSYS MAXWELL · FEMM">ANSYS MAXWELL · FEMM</div>
-            <h3 data-en="Electromagnetics" data-tr="Elektromanyetik">Electromagnetics</h3>
-            <p data-en="Magnetic and electromagnetic field simulation — mapping the invisible into working geometry." data-tr="Manyetik ve elektromanyetik alan simülasyonu — görünmeyeni çalışan geometriye dönüştürmek.">Magnetic and electromagnetic field simulation — mapping the invisible into working geometry.</p>
+          <div class="project-body">
+            <span class="status planned" data-en="Planned" data-tr="Planlanan">Planned</span>
+            <h3 data-en="Galvanic Isolation & EMI Analysis" data-tr="Galvanik İzolasyon & EMI Analizi">Galvanic Isolation &amp; EMI Analysis</h3>
+            <p class="summary" data-en="Verifying isolation barriers and mapping EMI coupling paths in the powertrain." data-tr="Güç aktarma organındaki izolasyon bariyerlerini doğrulamak ve EMI kuplaj yollarını haritalamak.">Verifying isolation barriers and mapping EMI coupling paths in the powertrain.</p>
+            <dl>
+              <dt data-en="Problem" data-tr="Problem">Problem</dt>
+              <dd data-en="High-voltage and low-voltage domains must stay isolated, and switching noise must not couple into sensitive signals." data-tr="Yüksek gerilim ve düşük gerilim bölgeleri izole kalmalı ve anahtarlama gürültüsü hassas sinyallere geçmemeli.">High-voltage and low-voltage domains must stay isolated, and switching noise must not couple into sensitive signals.</dd>
+              <dt data-en="Approach" data-tr="Yaklaşım">Approach</dt>
+              <dd data-en="Parasitic extraction in ANSYS Q3D to quantify coupling capacitances and inductances, then trace the dominant EMI paths." data-tr="Kuplaj kapasitanslarını ve endüktanslarını ölçmek için ANSYS Q3D'de parazitik çıkarım, ardından baskın EMI yollarının izini sürmek.">Parasitic extraction in ANSYS Q3D to quantify coupling capacitances and inductances, then trace the dominant EMI paths.</dd>
+              <dt data-en="Result" data-tr="Sonuç">Result</dt>
+              <dd data-en="Bootcamp output — to be documented here." data-tr="Bootcamp çıktısı — burada belgelenecek.">Bootcamp output — to be documented here.</dd>
+              <dt data-en="Learned" data-tr="Öğrenilen">Learned</dt>
+              <dd data-en="To be added as the analysis is completed." data-tr="Analiz tamamlandıkça eklenecek.">To be added as the analysis is completed.</dd>
+            </dl>
           </div>
-        </a>
+        </article>
 
       </div>
     </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about">
+      <div class="shead">
+        <h2 data-en="About" data-tr="Hakkında">About</h2><span class="rule"></span>
+      </div>
+      <p class="about" data-en="I'm an undergraduate mechanical engineering student and a member of <em>Phalanx Racing</em>, where I work on the electromagnetic side of our electric vehicle — motor validation, EMC, and isolation. Right now I'm building my simulation skills from the ground up: studying electromagnetics from its fundamentals and applying it in ANSYS Maxwell and Q3D. What pulls me toward this field is turning invisible fields into working, verified geometry." data-tr="Makine mühendisliği lisans öğrencisiyim ve <em>Phalanx Racing</em> takımının bir üyesiyim; burada elektrikli aracımızın elektromanyetik tarafında — motor doğrulama, EMC ve izolasyon — çalışıyorum. Şu anda simülasyon yetkinliğimi temelden kuruyorum: elektromanyetiği temellerinden çalışıp ANSYS Maxwell ve Q3D'de uyguluyorum. Beni bu alana çeken şey, görünmeyen alanları çalışan ve doğrulanmış geometriye dönüştürmek.">I'm an undergraduate mechanical engineering student and a member of <em>Phalanx Racing</em>, where I work on the electromagnetic side of our electric vehicle — motor validation, EMC, and isolation. Right now I'm building my simulation skills from the ground up: studying electromagnetics from its fundamentals and applying it in ANSYS Maxwell and Q3D. What pulls me toward this field is turning invisible fields into working, verified geometry.</p>
+    </section>
+
+    <!-- ============ SKILLS / CV ============ -->
     <section id="cv">
       <div class="shead">
-        <h2 data-en="Curriculum Vitae" data-tr="Özgeçmiş">Curriculum Vitae</h2><span class="rule"></span>
+        <h2 data-en="Skills" data-tr="Yetenekler">Skills</h2><span class="rule"></span>
       </div>
       <div class="cvgrid">
 
@@ -214,17 +262,31 @@
           <div class="cvkey" data-en="Education" data-tr="Eğitim">Education</div>
           <div class="cvval">
             <h3 data-en="B.Sc. Mechanical Engineering" data-tr="Makine Mühendisliği Lisans">B.Sc. Mechanical Engineering</h3>
-            <div class="sub" data-en="English Medium · First-Year Student" data-tr="İngilizce · Birinci Sınıf Öğrencisi">English Medium · First-Year Student</div>
+            <div class="sub" data-en="English Medium · Undergraduate" data-tr="İngilizce · Lisans Öğrencisi">English Medium · Undergraduate</div>
             <div class="score" data-en="2024 — PRESENT" data-tr="2024 — DEVAM EDİYOR">2024 — PRESENT</div>
           </div>
         </div>
 
         <div class="cvrow">
-          <div class="cvkey" data-en="CAD / CAE" data-tr="CAD / CAE">CAD / CAE</div>
+          <div class="cvkey" data-en="Team" data-tr="Takım">Team</div>
           <div class="cvval">
-            <div class="skills">
-              <span>Fusion 360</span><span>FEA</span><span data-en="Assembly" data-tr="Montaj">Assembly</span><span data-en="Technical Drawing" data-tr="Teknik Çizim">Technical Drawing</span><span>Ansys Maxwell</span><span>FEMM</span><span>CATIA</span><span>Siemens NX</span>
-            </div>
+            <h3>Phalanx Racing</h3>
+            <div class="sub" data-en="Electromagnetic simulation & EMC — electric vehicle" data-tr="Elektromanyetik simülasyon & EMC — elektrikli araç">Electromagnetic simulation &amp; EMC — electric vehicle</div>
+          </div>
+        </div>
+
+        <!-- TODO(Ebru): trim these to tools you actually use. Keep it honest — better a short true list than a long inflated one. -->
+        <div class="cvrow">
+          <div class="cvkey" data-en="Simulation" data-tr="Simülasyon">Simulation</div>
+          <div class="cvval">
+            <div class="skills"><span>ANSYS Maxwell</span><span>ANSYS Q3D</span><span>FEA</span></div>
+          </div>
+        </div>
+
+        <div class="cvrow">
+          <div class="cvkey" data-en="CAD" data-tr="CAD">CAD</div>
+          <div class="cvval">
+            <div class="skills"><span>Fusion 360</span><span data-en="Technical Drawing" data-tr="Teknik Çizim">Technical Drawing</span></div>
           </div>
         </div>
 
@@ -236,11 +298,16 @@
         </div>
 
         <div class="cvrow">
-          <div class="cvkey" data-en="Competencies" data-tr="Yetkinlikler">Competencies</div>
+          <div class="cvkey" data-en="Fundamentals" data-tr="Temeller">Fundamentals</div>
           <div class="cvval">
-            <div class="skills">
-              <span data-en="Mechanical Design" data-tr="Mekanik Tasarım">Mechanical Design</span><span>FEA</span><span data-en="Kinematic Simulation" data-tr="Kinematik Simülasyon">Kinematic Simulation</span><span data-en="Electromagnetic Simulation" data-tr="Elektromanyetik Simülasyon">Electromagnetic Simulation</span><span data-en="Acoustic Analysis" data-tr="Akustik Analiz">Acoustic Analysis</span><span data-en="Technical Documentation" data-tr="Teknik Dokümantasyon">Technical Documentation</span>
-            </div>
+            <div class="skills"><span data-en="Electromagnetics" data-tr="Elektromanyetik">Electromagnetics</span><span data-en="Power Electronics" data-tr="Güç Elektroniği">Power Electronics</span><span data-en="Motor Design" data-tr="Motor Tasarımı">Motor Design</span></div>
+          </div>
+        </div>
+
+        <div class="cvrow">
+          <div class="cvkey" data-en="Currently Learning" data-tr="Şu An Öğreniyorum">Currently Learning</div>
+          <div class="cvval">
+            <div class="skills learning"><span>ANSYS Maxwell</span><span>ANSYS Q3D</span><span>EMC / EMI</span><span data-en="Motor Validation" data-tr="Motor Doğrulama">Motor Validation</span></div>
           </div>
         </div>
 
@@ -252,6 +319,8 @@
         </div>
 
       </div>
+
+      <!-- TODO(Ebru): add Ebru_Tokatli_CV_EN.pdf / _TR.pdf to the repo root, or remove these two buttons until you have them. -->
       <div class="cvactions">
         <a href="Ebru_Tokatli_CV_EN.pdf" data-en="Download CV (EN)" data-tr="CV İndir (EN)">Download CV (EN)</a>
         <a href="Ebru_Tokatli_CV_TR.pdf" data-en="Download CV (TR)" data-tr="CV İndir (TR)">Download CV (TR)</a>
@@ -259,67 +328,21 @@
       </div>
     </section>
 
-    <section id="about">
-      <div class="shead">
-        <h2 data-en="About" data-tr="Hakkında">About</h2><span class="rule"></span>
-      </div>
-      <p class="about" data-en="Mechanical engineering student specializing in electromagnetic and acoustic simulation, design, and fabrication. Focused on the analysis and physical realization of field-driven systems." data-tr="Elektromanyetik ve akustik simülasyon, tasarım ve üretim alanlarında uzmanlaşan makine mühendisliği öğrencisi. Alan tabanlı sistemlerin analizine ve fiziksel olarak hayata geçirilmesine odaklanıyor.">Mechanical engineering student specializing in electromagnetic and acoustic simulation, design, and fabrication. Focused on the analysis and physical realization of field-driven systems.</p>
-    </section>
-
-    <section id="offtopic">
-      <div class="shead">
-        <h2 data-en="Off Topic" data-tr="Konu Dışı">Off Topic</h2><span class="rule"></span>
-      </div>
-      <div class="grid4">
-
-        <a class="card" href="comp-social-science.html">
-          <div class="thumb ph"><img src="img/off1.jpg" alt="Computational Social Science" onerror="this.style.display='none'"></div>
-          <div class="cbody">
-            <div class="tag" data-en="DATA · SOCIETY" data-tr="VERİ · TOPLUM">DATA · SOCIETY</div>
-            <h3 data-en="Computational Social Science" data-tr="Hesaplamalı Sosyal Bilim">Computational Social Science</h3>
-            <p data-en="Studying society through data, models, and simulation." data-tr="Toplumu veri, modeller ve simülasyon yoluyla incelemek.">Studying society through data, models, and simulation.</p>
-          </div>
-        </a>
-
-        <a class="card" href="reading-list.html">
-          <div class="thumb ph"><img src="img/off2.jpg" alt="Reading List" onerror="this.style.display='none'"></div>
-          <div class="cbody">
-            <div class="tag" data-en="BOOKS · NOTES" data-tr="KİTAPLAR · NOTLAR">BOOKS · NOTES</div>
-            <h3 data-en="Reading List" data-tr="Okuma Listesi">Reading List</h3>
-            <p data-en="Books I'm reading — with notes and recommendations." data-tr="Okuduğum kitaplar — notlar ve önerilerle.">Books I'm reading — with notes and recommendations.</p>
-          </div>
-        </a>
-
-        <a class="card" href="art.html">
-          <div class="thumb ph"><img src="img/off3.jpg" alt="Art" onerror="this.style.display='none'"></div>
-          <div class="cbody">
-            <div class="tag" data-en="LISTENING · GALLERY · SCENT" data-tr="DİNLEME · GALERİ · KOKU">LISTENING · GALLERY · SCENT</div>
-            <h3 data-en="Art" data-tr="Sanat">Art</h3>
-            <p data-en="A listening log, art gallery, and perfume log." data-tr="Bir dinleme günlüğü, sanat galerisi ve parfüm günlüğü.">A listening log, art gallery, and perfume log.</p>
-          </div>
-        </a>
-
-        <span class="card">
-          <div class="thumb ph"><img src="img/off4.jpg" alt="" onerror="this.style.display='none'"></div>
-          <div class="cbody">
-            <div class="tag">—</div>
-            <h3 data-en="Coming Soon" data-tr="Yakında">Coming Soon</h3>
-            <p data-en="More soon." data-tr="Yakında daha fazlası.">More soon.</p>
-          </div>
-        </span>
-
-      </div>
-    </section>
+    <!-- ============ CONTACT ============ -->
     <footer id="contact">
       <div>İSTANBUL &middot; 2025&mdash;</div>
       <div>
         <a href="mailto:ebrutokatli33@gmail.com" data-en="EMAIL" data-tr="E-POSTA">EMAIL</a>&nbsp;&nbsp;
         <a href="https://www.linkedin.com/in/ebrutokatli/">LINKEDIN</a>&nbsp;&nbsp;
         <a href="https://github.com/ebrutokatli">GITHUB</a>
+        <!-- TODO(Ebru): add a link to the Phalanx Racing team page when you have the URL. -->
       </div>
     </footer>
+
   </div>
+
 <script>
+  // Reveal project cards on scroll
   const io=new IntersectionObserver((entries)=>{
     entries.forEach((e,i)=>{
       if(e.isIntersecting){
@@ -328,10 +351,11 @@
       }
     });
   },{threshold:.18});
-  document.querySelectorAll('.card').forEach(c=>io.observe(c));
+  document.querySelectorAll('.project').forEach(c=>io.observe(c));
 </script>
 
 <script>
+  // EN / TR language toggle
   function applyLang(lang){
     document.documentElement.lang = lang;
     document.querySelectorAll('[data-en]').forEach(function(el){
