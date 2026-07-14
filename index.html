@@ -3,8 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Ebru Tokatlı — mechanical engineering student working on EMC and electromagnetic analysis, and founder of Phalanx Racing.">
+<meta name="description" content="Ebru Tokatlı — mechanical engineering student working on EMC and electromagnetic analysis, and cofounder of Phalanx Racing.">
 <title data-en="Ebru Tokatlı — Engineering Portfolio" data-tr="Ebru Tokatlı — Mühendislik Portföyü">Ebru Tokatlı — Engineering Portfolio</title>
+<script>
+  // set theme before paint to avoid a flash of the wrong colours
+  (function(){
+    try{
+      var t = localStorage.getItem('theme');
+      if(!t) t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    }catch(e){ document.documentElement.setAttribute('data-theme','dark'); }
+  })();
+</script>
 <style>
   :root{
     --ink:#0a0e1a;
@@ -16,9 +26,23 @@
     --lumen:#7c6cf0;
     --cyan:#56b8d4;
     --green:#7fd1a3;
+    --barbg:rgba(10,14,26,.82);
     --serif:"Times New Roman",Times,serif;
     --sans:"Times New Roman",Times,serif;
     --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  }
+  /* Light mode — same Neptunian family: periwinkle field, indigo ink, cyan/violet accents */
+  :root[data-theme="light"]{
+    --ink:#e7ecfb;
+    --slate:#ffffff;
+    --slate2:#eef2fe;
+    --line:rgba(60,72,128,.16);
+    --haze:#565f88;
+    --pale:#141a33;
+    --lumen:#5a4bd8;
+    --cyan:#1f8fb0;
+    --green:#2f9e73;
+    --barbg:rgba(231,236,251,.85);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -46,7 +70,7 @@
   .wrap{position:relative;z-index:1;max-width:1140px;margin:0 auto;padding:0 32px}
   .barwrap{
     position:sticky;top:0;z-index:5;
-    background:rgba(10,14,26,.82);
+    background:var(--barbg);
     backdrop-filter:blur(12px);
     border-bottom:1px solid var(--line);
   }
@@ -63,8 +87,9 @@
   }
   nav a:hover{color:var(--cyan)}
 
-  .langtog{background:none;border:1px solid var(--line);border-radius:2px;color:var(--haze);font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;padding:5px 9px;cursor:pointer;display:inline-flex;gap:6px;align-items:center;transition:border-color .3s;line-height:1}
-  .langtog:hover{border-color:var(--pale)}
+  .langtog,.themetog{background:none;border:1px solid var(--line);border-radius:2px;color:var(--haze);font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;padding:5px 9px;cursor:pointer;display:inline-flex;gap:6px;align-items:center;transition:border-color .3s,color .3s;line-height:1}
+  .langtog:hover,.themetog:hover{border-color:var(--pale);color:var(--pale)}
+  .themetog{font-size:.95rem;padding:4px 9px}
   .langtog [data-lang]{opacity:.4;transition:opacity .3s}
   .langtog [data-lang].active{opacity:1;color:var(--pale)}
   .langtog .sep{opacity:.3}
@@ -189,6 +214,7 @@
         <a href="#skills" data-en="Skills" data-tr="Yetenekler">Skills</a>
         <a href="#writing" data-en="Writing" data-tr="Yazılar">Writing</a>
         <a href="#contact" data-en="Contact" data-tr="İletişim">Contact</a>
+        <button class="themetog" id="themetog" aria-label="Toggle light or dark mode"><span id="themeicon">☾</span></button>
         <button class="langtog" id="langtog" aria-label="Language"><span data-lang="en">EN</span><span class="sep">/</span><span data-lang="tr">TR</span></button>
       </nav>
     </div>
@@ -198,12 +224,12 @@
 
     <!-- ============ HERO ============ -->
     <div class="intro">
-      <h1 data-en="Mechanical engineering student working on <em>EMC</em> and <em>electromagnetic analysis</em> — and founder of <em>Phalanx Racing</em>." data-tr="<em>EMC</em> ve <em>elektromanyetik analiz</em> üzerine çalışan makine mühendisliği öğrencisi — ve <em>Phalanx Racing</em>'in kurucusu.">Mechanical engineering student working on <em>EMC</em> and <em>electromagnetic analysis</em> — and founder of <em>Phalanx Racing</em>.</h1>
-      <div class="meta" data-en="İSTANBUL<br>ANSYS MAXWELL · Q3D<br>EMC · MOTOR ANALYSIS<br>FOUNDER &amp; <span>DIRECTOR</span>" data-tr="İSTANBUL<br>ANSYS MAXWELL · Q3D<br>EMC · MOTOR ANALİZİ<br>KURUCU &amp; <span>DİREKTÖR</span>">
+      <h1 data-en="Mechanical engineering student working on <em>EMC</em> and <em>electromagnetic analysis</em> — and team director of <em>Phalanx Racing</em>." data-tr="<em>EMC</em> ve <em>elektromanyetik analiz</em> üzerine çalışan makine mühendisliği öğrencisi — ve <em>Phalanx Racing</em>'in takım direktörü.">Mechanical engineering student working on <em>EMC</em> and <em>electromagnetic analysis</em> — and team director of <em>Phalanx Racing</em>.</h1>
+      <div class="meta" data-en="İSTANBUL<br>ANSYS MAXWELL · Q3D<br>EMC · MOTOR ANALYSIS<br>TEAM <span>DIRECTOR</span>" data-tr="İSTANBUL<br>ANSYS MAXWELL · Q3D<br>EMC · MOTOR ANALİZİ<br>TAKIM <span>DİREKTÖRÜ</span>">
         İSTANBUL<br>
         ANSYS MAXWELL · Q3D<br>
         EMC · MOTOR ANALYSIS<br>
-        FOUNDER &amp; <span>DIRECTOR</span>
+        TEAM <span>DIRECTOR</span>
       </div>
     </div>
 
@@ -224,12 +250,12 @@
       <div class="shead">
         <h2 data-en="Phalanx Racing" data-tr="Phalanx Racing">Phalanx Racing</h2><span class="rule"></span>
       </div>
-      <p class="lead" data-en="Founder and director of <em>Phalanx Racing</em>, a 20-person team building an electric vehicle for TEKNOFEST. Beyond the electromagnetic engineering, I built the team's entire digital backbone — website, CI/CD, domain, and SEO." data-tr="TEKNOFEST için elektrikli araç geliştiren 20 kişilik <em>Phalanx Racing</em> takımının kurucusu ve direktörü. Elektromanyetik mühendisliğin ötesinde, takımın tüm dijital altyapısını kurdum — web sitesi, CI/CD, alan adı ve SEO.">Founder and director of <em>Phalanx Racing</em>, a 20-person team building an electric vehicle for TEKNOFEST. Beyond the electromagnetic engineering, I built the team's entire digital backbone — website, CI/CD, domain, and SEO.</p>
+      <p class="lead" data-en="Cofounder and director of <em>Phalanx Racing</em>, a 20-person team building an electric vehicle for TEKNOFEST. Beyond the electromagnetic engineering, I built the team's entire digital backbone — website, CI/CD, domain, and SEO." data-tr="TEKNOFEST için elektrikli araç geliştiren 20 kişilik <em>Phalanx Racing</em> takımının kurucu ortağı ve direktörü. Elektromanyetik mühendisliğin ötesinde, takımın tüm dijital altyapısını kurdum — web sitesi, CI/CD, alan adı ve SEO.">Cofounder and director of <em>Phalanx Racing</em>, a 20-person team building an electric vehicle for TEKNOFEST. Beyond the electromagnetic engineering, I built the team's entire digital backbone — website, CI/CD, domain, and SEO.</p>
 
       <div class="teamgrid">
         <div class="teamrow">
           <div class="teamkey" data-en="Role" data-tr="Rol">Role</div>
-          <div class="teamval" data-en="Founder &amp; Director" data-tr="Kurucu &amp; Direktör">Founder &amp; Director</div>
+          <div class="teamval" data-en="Cofounder &amp; Director" data-tr="Kurucu Ortak &amp; Direktör">Cofounder &amp; Director</div>
         </div>
         <div class="teamrow">
           <div class="teamkey" data-en="Team" data-tr="Takım">Team</div>
@@ -542,6 +568,26 @@
       });
     }, { threshold: .18 });
     document.querySelectorAll(".project").forEach(function(c){ io.observe(c); });
+  })();
+</script>
+
+<script>
+  // Light / dark theme toggle (the initial theme is set by the inline script in <head>)
+  (function(){
+    var root = document.documentElement;
+    var btn = document.getElementById('themetog');
+    var icon = document.getElementById('themeicon');
+    function setIcon(){
+      var light = root.getAttribute('data-theme') === 'light';
+      if(icon) icon.textContent = light ? '☀' : '☾';
+    }
+    setIcon();
+    if(btn) btn.addEventListener('click', function(){
+      var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      try{ localStorage.setItem('theme', next); }catch(e){}
+      setIcon();
+    });
   })();
 </script>
 
