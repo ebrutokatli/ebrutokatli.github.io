@@ -16,38 +16,38 @@
   })();
 </script>
 <style>
+  /* Plain, grayscale, typography-led. No gradients, no glow, no colour accents. */
   :root{
-    --ink:#0a0e1a;
-    --slate:#141a2e;
-    --slate2:#1b2238;
-    --line:rgba(136,147,181,.14);
-    --haze:#9aa4c4;
-    --pale:#eef2f8;
-    --lumen:#7c6cf0;
-    --cyan:#56b8d4;
-    --green:#7fd1a3;
-    --barbg:rgba(10,14,26,.82);
+    --ink:#0a0a0a;
+    --slate:#141414;
+    --slate2:#141414;
+    --line:rgba(255,255,255,.16);
+    --haze:#9a9a9a;
+    --pale:#f2f2f2;
+    --lumen:#c9c9c9;
+    --cyan:#f2f2f2;
+    --green:#f2f2f2;
+    --barbg:rgba(10,10,10,.94);
     --serif:"Times New Roman",Times,serif;
     --sans:"Times New Roman",Times,serif;
     --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
   }
-  /* Light mode — same Neptunian family: periwinkle field, indigo ink, cyan/violet accents */
   :root[data-theme="light"]{
-    --ink:#e7ecfb;
-    --slate:#ffffff;
-    --slate2:#eef2fe;
-    --line:rgba(60,72,128,.16);
-    --haze:#565f88;
-    --pale:#141a33;
-    --lumen:#5a4bd8;
-    --cyan:#1f8fb0;
-    --green:#2f9e73;
-    --barbg:rgba(231,236,251,.85);
+    --ink:#ffffff;
+    --slate:#f7f7f7;
+    --slate2:#f7f7f7;
+    --line:rgba(0,0,0,.15);
+    --haze:#666666;
+    --pale:#111111;
+    --lumen:#3a3a3a;
+    --cyan:#111111;
+    --green:#111111;
+    --barbg:rgba(255,255,255,.94);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   /* offset anchor jumps so section headings clear the sticky header */
-  #projects,#team,#skills,#writing,#contact{scroll-margin-top:104px}
+  #projects,#team,#skills,#contact{scroll-margin-top:104px}
   body{
     background:var(--ink);
     color:var(--pale);
@@ -57,21 +57,10 @@
     overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
   }
-  body::before{
-    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
-    background:
-      radial-gradient(50vw 55vw at 82% 8%, rgba(124,108,240,.12), transparent 60%),
-      radial-gradient(55vw 55vw at 8% 70%, rgba(86,184,212,.09), transparent 62%);
-  }
-  body::after{
-    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-  .wrap{position:relative;z-index:1;max-width:1140px;margin:0 auto;padding:0 32px}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 32px}
   .barwrap{
     position:sticky;top:0;z-index:5;
     background:var(--barbg);
-    backdrop-filter:blur(12px);
     border-bottom:1px solid var(--line);
   }
   .bar{
@@ -83,14 +72,14 @@
   nav{display:flex;gap:26px;align-items:center}
   nav a{
     font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;
-    color:var(--haze);text-decoration:none;transition:color .3s;
+    color:var(--haze);text-decoration:none;transition:color .2s;
   }
-  nav a:hover{color:var(--cyan)}
+  nav a:hover{color:var(--pale)}
 
-  .langtog,.themetog{background:none;border:1px solid var(--line);border-radius:2px;color:var(--haze);font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;padding:5px 9px;cursor:pointer;display:inline-flex;gap:6px;align-items:center;transition:border-color .3s,color .3s;line-height:1}
+  .langtog,.themetog{background:none;border:1px solid var(--line);color:var(--haze);font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;padding:5px 9px;cursor:pointer;display:inline-flex;gap:6px;align-items:center;transition:border-color .2s,color .2s;line-height:1}
   .langtog:hover,.themetog:hover{border-color:var(--pale);color:var(--pale)}
   .themetog{font-size:.95rem;padding:4px 9px}
-  .langtog [data-lang]{opacity:.4;transition:opacity .3s}
+  .langtog [data-lang]{opacity:.4;transition:opacity .2s}
   .langtog [data-lang].active{opacity:1;color:var(--pale)}
   .langtog .sep{opacity:.3}
 
@@ -99,7 +88,7 @@
     font-family:var(--serif);font-weight:400;
     font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.18;max-width:34ch;color:var(--pale);
   }
-  .intro h1 em{font-style:normal;color:var(--cyan)}
+  .intro h1 em{font-style:italic;color:var(--pale)}
   .intro .meta{font-family:var(--mono);font-size:.8rem;color:var(--haze);text-align:right;line-height:2.1;white-space:nowrap;letter-spacing:.04em}
   .intro .meta span{color:var(--pale)}
 
@@ -108,34 +97,32 @@
   .shead .rule{flex:1;height:1px;background:var(--line)}
 
   .lead{max-width:62ch;color:var(--haze);font-size:1.05rem;margin:-6px 0 30px}
-  .lead em{font-style:normal;color:var(--pale)}
+  .lead em{font-style:italic;color:var(--pale)}
 
   /* ---- Projects ---- */
   .projects{display:flex;flex-direction:column;gap:22px}
   .project{
     display:grid;grid-template-columns:minmax(0,300px) 1fr;
-    background:linear-gradient(165deg,var(--slate2),var(--slate));
-    border:1px solid var(--line);border-radius:3px;overflow:hidden;
-    opacity:0;transform:translateY(26px);
-    transition:opacity .9s ease,transform .9s cubic-bezier(.16,.7,.3,1),border-color .5s,box-shadow .5s;
+    background:var(--slate);
+    border:1px solid var(--line);overflow:hidden;
+    opacity:0;
+    transition:opacity .5s ease,border-color .2s;
   }
-  .project.surfaced{opacity:1;transform:translateY(0)}
-  .project:hover{border-color:rgba(124,108,240,.4);box-shadow:0 22px 60px -34px rgba(124,108,240,.5)}
+  .project.surfaced{opacity:1}
+  .project:hover{border-color:var(--pale)}
   .project-media{
     position:relative;min-height:200px;background:var(--ink);
     display:flex;align-items:center;justify-content:center;overflow:hidden;
-    background-image:radial-gradient(120% 120% at 70% 0%,rgba(124,108,240,.22),rgba(86,184,212,.06) 45%,var(--ink) 90%);
+    border-right:1px solid var(--line);
   }
-  .project-media img{width:100%;height:100%;object-fit:cover;display:block}
+  .project-media img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1)}
   .project-media .ph{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;color:var(--haze);text-align:center;padding:0 20px}
   .project-body{padding:26px 28px 30px}
   .status{
     display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;
-    text-transform:uppercase;padding:4px 9px;border-radius:2px;margin-bottom:12px;
+    text-transform:uppercase;padding:4px 9px;margin-bottom:12px;border:1px solid var(--line);color:var(--haze);
   }
-  .status.complete{color:var(--green);border:1px solid rgba(127,209,163,.4)}
-  .status.progress{color:var(--cyan);border:1px solid rgba(86,184,212,.4)}
-  .status.planned{color:var(--haze);border:1px solid var(--line)}
+  .status.complete{color:var(--pale);border-color:var(--pale)}
   .project-body h3{font-family:var(--serif);font-weight:500;font-size:1.5rem;color:var(--pale);margin-bottom:6px}
   .project-body .summary{color:var(--haze);font-size:1.02rem;margin-bottom:18px}
   .project-body dl{display:grid;grid-template-columns:110px 1fr;gap:0}
@@ -146,7 +133,7 @@
   .project-body dd{padding:11px 0;border-top:1px solid var(--line);color:var(--haze);font-size:.98rem;line-height:1.55}
   @media(max-width:760px){
     .project{grid-template-columns:1fr}
-    .project-media{min-height:160px}
+    .project-media{min-height:160px;border-right:none;border-bottom:1px solid var(--line)}
     .project-body dl{grid-template-columns:1fr}
     .project-body dt{padding:12px 0 2px;border-top:1px solid var(--line)}
     .project-body dd{padding:2px 0 12px;border-top:none}
@@ -166,34 +153,23 @@
   .cvval{padding:18px 0;border-top:1px solid var(--line)}
   .cvval h3{font-family:var(--serif);font-weight:500;font-size:1.25rem;color:var(--pale);margin-bottom:3px}
   .cvval .sub{font-size:.96rem;color:var(--haze);margin-bottom:2px}
-  .cvval .score{font-family:var(--mono);font-size:.82rem;color:var(--cyan);letter-spacing:.06em}
+  .cvval .score{font-family:var(--mono);font-size:.82rem;color:var(--haze);letter-spacing:.06em}
   .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
-  .skills span{font-family:var(--mono);font-size:.82rem;color:var(--haze);border:1px solid var(--line);border-radius:2px;padding:5px 9px}
-  .skills.learning span{color:var(--cyan);border-color:rgba(86,184,212,.35)}
+  .skills span{font-family:var(--mono);font-size:.82rem;color:var(--haze);border:1px solid var(--line);padding:5px 9px}
+  .skills.learning span{color:var(--pale);border-style:dashed}
   .cvactions{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap}
-  .cvactions a{font-family:var(--mono);font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;color:var(--pale);text-decoration:none;border:1px solid var(--lumen);border-radius:2px;padding:10px 16px;transition:all .3s}
-  .cvactions a:hover{border-color:var(--cyan);color:var(--cyan)}
+  .cvactions a{font-family:var(--mono);font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;color:var(--pale);text-decoration:none;border:1px solid var(--pale);padding:10px 16px;transition:opacity .2s}
+  .cvactions a:hover{opacity:.6}
   @media(max-width:720px){.cvgrid{grid-template-columns:1fr;gap:0}.cvkey{padding:16px 0 4px;border-top:1px solid var(--line)}.cvval{padding:4px 0 16px;border-top:none}}
 
   .about{max-width:60ch;font-family:var(--serif);font-size:1.3rem;line-height:1.6;color:var(--pale)}
-  .about em{font-style:italic;color:var(--cyan)}
-
-  /* ---- Writing ---- */
-  .notes{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-  .note{
-    background:linear-gradient(165deg,var(--slate2),var(--slate));
-    border:1px solid var(--line);border-radius:3px;padding:22px 24px;
-  }
-  .note .date{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--haze)}
-  .note h3{font-family:var(--serif);font-weight:500;font-size:1.25rem;color:var(--pale);margin:6px 0 8px}
-  .note p{color:var(--haze);font-size:.98rem;line-height:1.55}
-  @media(max-width:720px){.notes{grid-template-columns:1fr}}
+  .about em{font-style:italic;color:var(--pale)}
 
   footer{margin-top:70px;padding:36px 0 56px;border-top:1px solid var(--line);
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;
     font-family:var(--mono);font-size:.85rem;color:var(--haze)}
-  footer a{color:var(--pale);text-decoration:none;border-bottom:1px solid var(--lumen);padding-bottom:2px}
-  footer a:hover{color:var(--cyan);border-color:var(--cyan)}
+  footer a{color:var(--pale);text-decoration:none;border-bottom:1px solid var(--haze);padding-bottom:2px;transition:opacity .2s}
+  footer a:hover{opacity:.6}
   @media(max-width:720px){
     .wrap{padding:0 20px}
     .bar{flex-direction:column;align-items:flex-start;gap:14px;padding:18px 20px}
@@ -203,7 +179,7 @@
     .intro .meta{text-align:left}
   }
   @media(prefers-reduced-motion:reduce){
-    .project{opacity:1;transform:none;transition:border-color .5s,box-shadow .5s}
+    .project{opacity:1;transition:border-color .2s}
   }
 </style>
 </head>
@@ -215,7 +191,6 @@
         <a href="#projects" data-en="Work" data-tr="Çalışmalar">Work</a>
         <a href="#team" data-en="Team" data-tr="Takım">Team</a>
         <a href="#skills" data-en="Skills" data-tr="Yetenekler">Skills</a>
-        <a href="#writing" data-en="Writing" data-tr="Yazılar">Writing</a>
         <a href="#contact" data-en="Contact" data-tr="İletişim">Contact</a>
         <button class="themetog" id="themetog" aria-label="Toggle light or dark mode"><span id="themeicon">☾</span></button>
         <button class="langtog" id="langtog" aria-label="Language"><span data-lang="en">EN</span><span class="sep">/</span><span data-lang="tr">TR</span></button>
@@ -227,7 +202,7 @@
 
     <!-- ============ HERO ============ -->
     <div class="intro">
-      <h1 data-en="Mechanical engineering student working on <em>EMC</em> and <em>electromagnetic analysis</em> — and team director of <em>Phalanx Racing</em>." data-tr="<em>EMC</em> ve <em>elektromanyetik analiz</em> üzerine çalışan makine mühendisliği öğrencisi — ve <em>Phalanx Racing</em>'in takım direktörü.">Mechanical engineering student working on <em>EMC</em> and <em>electromagnetic analysis</em> — and team director of <em>Phalanx Racing</em>.</h1>
+      <h1 data-en="Mechanical engineering student. I work on <em>EMC</em> and <em>electromagnetic analysis</em>, and I'm team director of <em>Phalanx Racing</em>." data-tr="Makine mühendisliği öğrencisiyim. <em>EMC</em> ve <em>elektromanyetik analiz</em> üzerine çalışıyorum, ve <em>Phalanx Racing</em>'in takım direktörüyüm.">Mechanical engineering student. I work on <em>EMC</em> and <em>electromagnetic analysis</em>, and I'm team director of <em>Phalanx Racing</em>.</h1>
       <div class="meta" data-en="İSTANBUL<br>ANSYS MAXWELL · Q3D<br>EMC · MOTOR ANALYSIS<br>TEAM <span>DIRECTOR</span>" data-tr="İSTANBUL<br>ANSYS MAXWELL · Q3D<br>EMC · MOTOR ANALİZİ<br>TAKIM <span>DİREKTÖRÜ</span>">
         İSTANBUL<br>
         ANSYS MAXWELL · Q3D<br>
@@ -241,7 +216,7 @@
       <div class="shead">
         <h2 data-en="Work" data-tr="Çalışmalar">Work</h2><span class="rule"></span>
       </div>
-      <p class="lead" data-en="Electromagnetic and EMC engineering for an electric vehicle — motor analysis in ANSYS Maxwell / RMxprt, parasitic extraction in Q3D, and the electrical-architecture standards that hold it together. Each entry: <em>problem → tool → output → what I learned</em>." data-tr="Bir elektrikli araç için elektromanyetik ve EMC mühendisliği — ANSYS Maxwell / RMxprt'te motor analizi, Q3D'de parazitik çıkarım ve bunları bir arada tutan elektriksel mimari standartları. Her kayıt: <em>problem → araç → çıktı → öğrendiğim</em>.">Electromagnetic and EMC engineering for an electric vehicle — motor analysis in ANSYS Maxwell / RMxprt, parasitic extraction in Q3D, and the electrical-architecture standards that hold it together. Each entry: <em>problem → tool → output → what I learned</em>.</p>
+      <p class="lead" data-en="Electromagnetic and EMC engineering for an electric vehicle. Motor analysis in ANSYS Maxwell and RMxprt, parasitic extraction in Q3D, and the electrical standards that tie it together. Each project below: the problem, what I did, the result, and what I learned." data-tr="Bir elektrikli araç için elektromanyetik ve EMC mühendisliği. ANSYS Maxwell ve RMxprt'te motor analizi, Q3D'de parazitik çıkarım, ve bunları bir arada tutan elektriksel standartlar. Aşağıdaki her proje: problem, ne yaptığım, sonuç ve öğrendiğim.">Electromagnetic and EMC engineering for an electric vehicle. Motor analysis in ANSYS Maxwell and RMxprt, parasitic extraction in Q3D, and the electrical standards that tie it together. Each project below: the problem, what I did, the result, and what I learned.</p>
 
       <!-- Project cards are generated from the PROJECTS array in the script at the
            bottom of this file. To add a project, copy one { ... } block there. -->
@@ -253,7 +228,7 @@
       <div class="shead">
         <h2 data-en="Phalanx Racing" data-tr="Phalanx Racing">Phalanx Racing</h2><span class="rule"></span>
       </div>
-      <p class="lead" data-en="Cofounder and director of <em>Phalanx Racing</em>, a 20-person team building an electric vehicle for TEKNOFEST. Beyond the electromagnetic engineering, I built the team's entire digital backbone — website, CI/CD, domain, and SEO." data-tr="TEKNOFEST için elektrikli araç geliştiren 20 kişilik <em>Phalanx Racing</em> takımının kurucu ortağı ve direktörü. Elektromanyetik mühendisliğin ötesinde, takımın tüm dijital altyapısını kurdum — web sitesi, CI/CD, alan adı ve SEO.">Cofounder and director of <em>Phalanx Racing</em>, a 20-person team building an electric vehicle for TEKNOFEST. Beyond the electromagnetic engineering, I built the team's entire digital backbone — website, CI/CD, domain, and SEO.</p>
+      <p class="lead" data-en="I cofounded and direct <em>Phalanx Racing</em>, a 20-person team building an electric vehicle for TEKNOFEST. I also built the team's website, CI/CD, domain, and SEO." data-tr="<em>Phalanx Racing</em>'i kurdum ve yönetiyorum — TEKNOFEST için elektrikli araç geliştiren 20 kişilik bir takım. Takımın web sitesini, CI/CD'sini, alan adını ve SEO'sunu da ben kurdum.">I cofounded and direct <em>Phalanx Racing</em>, a 20-person team building an electric vehicle for TEKNOFEST. I also built the team's website, CI/CD, domain, and SEO.</p>
 
       <div class="teamgrid">
         <div class="teamrow">
@@ -285,7 +260,7 @@
       <div class="shead">
         <h2 data-en="About" data-tr="Hakkında">About</h2><span class="rule"></span>
       </div>
-      <p class="about" data-en="I'm an undergraduate mechanical engineering student who leads an electric-vehicle team and works on its electromagnetic side — motor analysis, EMC, and isolation. I build my simulation skills from the ground up: studying electromagnetics from its fundamentals and applying it in ANSYS Maxwell and Q3D. What pulls me toward this field is turning invisible fields into working, verified geometry — and writing the standards that let a team build on them." data-tr="Bir elektrikli araç takımını yöneten ve onun elektromanyetik tarafında — motor analizi, EMC ve izolasyon — çalışan makine mühendisliği lisans öğrencisiyim. Simülasyon yetkinliğimi temelden kuruyorum: elektromanyetiği temellerinden çalışıp ANSYS Maxwell ve Q3D'de uyguluyorum. Beni bu alana çeken şey, görünmeyen alanları çalışan ve doğrulanmış geometriye dönüştürmek — ve bir takımın üzerine inşa edebileceği standartları yazmak.">I'm an undergraduate mechanical engineering student who leads an electric-vehicle team and works on its electromagnetic side — motor analysis, EMC, and isolation. I build my simulation skills from the ground up: studying electromagnetics from its fundamentals and applying it in ANSYS Maxwell and Q3D. What pulls me toward this field is turning invisible fields into working, verified geometry — and writing the standards that let a team build on them.</p>
+      <p class="about" data-en="I'm an undergraduate mechanical engineering student. I lead an electric-vehicle team and work on its electromagnetic side: motor analysis, EMC, and isolation. I'm building my simulation skills from the fundamentals up, studying electromagnetics and applying it in ANSYS Maxwell and Q3D. I like turning invisible fields into working, tested designs, and writing the standards a team can build on." data-tr="Makine mühendisliği lisans öğrencisiyim. Bir elektrikli araç takımını yönetiyorum ve elektromanyetik tarafında çalışıyorum: motor analizi, EMC ve izolasyon. Simülasyon becerimi temelden kuruyorum — elektromanyetiği temelinden çalışıp ANSYS Maxwell ve Q3D'de uyguluyorum. Görünmeyen alanları çalışan ve test edilmiş tasarımlara dönüştürmeyi, ve bir takımın üzerine inşa edebileceği standartlar yazmayı seviyorum.">I'm an undergraduate mechanical engineering student. I lead an electric-vehicle team and work on its electromagnetic side: motor analysis, EMC, and isolation. I'm building my simulation skills from the fundamentals up, studying electromagnetics and applying it in ANSYS Maxwell and Q3D. I like turning invisible fields into working, tested designs, and writing the standards a team can build on.</p>
     </section>
 
     <!-- ============ SKILLS ============ -->
@@ -369,18 +344,6 @@
       </div>
     </section>
 
-    <!-- ============ WRITING / DEFTER ============ -->
-    <section id="writing">
-      <div class="shead">
-        <h2 data-en="Writing" data-tr="Yazılar">Writing</h2><span class="rule"></span>
-      </div>
-      <p class="lead" data-en="Short technical-reflective notes — thinking out loud about the physics I work with." data-tr="Kısa, teknik-düşünsel notlar — üzerinde çalıştığım fiziği yüksek sesle düşünmek.">Short technical-reflective notes — thinking out loud about the physics I work with.</p>
-
-      <!-- Notes are generated from the NOTES array in the script at the bottom of this file.
-           Add a note by copying one { ... } block there. -->
-      <div class="notes" id="note-list"></div>
-    </section>
-
     <!-- ============ CONTACT ============ -->
     <footer id="contact">
       <div>İSTANBUL &middot; 2025&mdash;</div>
@@ -413,16 +376,16 @@
       placeholderTR: "Elektriksel mimari standardı",
       titleEN: "Grounding Doctrine — Electrical Architecture Standard",
       titleTR: "Topraklama Doktrini — Elektriksel Mimari Standardı",
-      summaryEN: "A team-wide grounding and electrical-architecture standard I authored for the vehicle.",
-      summaryTR: "Araç için yazdığım, takım çapında topraklama ve elektriksel mimari standardı.",
-      problemEN: "Subsystems were being wired without a shared grounding scheme — an EMC and reliability risk as the electrical system grew.",
-      problemTR: "Alt sistemler ortak bir topraklama şeması olmadan bağlanıyordu — elektrik sistemi büyüdükçe EMC ve güvenilirlik riski.",
-      approachEN: "Wrote a team-wide electrical-architecture standard defining grounding topology, reference points, and shielding practice, then rolled it out across subsystems.",
-      approachTR: "Topraklama topolojisini, referans noktalarını ve ekranlama pratiğini tanımlayan, takım çapında bir elektriksel mimari standardı yazdım ve alt sistemlere yaydım.",
-      resultEN: "Adopted as the team's grounding reference for the build.",
-      resultTR: "Yapım için takımın topraklama referansı olarak benimsendi.",
-      learnedEN: "How early architectural decisions on grounding shape EMC outcomes downstream.",
-      learnedTR: "Topraklamaya dair erken mimari kararların, sonraki EMC sonuçlarını nasıl şekillendirdiği."
+      summaryEN: "A grounding and electrical-architecture standard I wrote for the team.",
+      summaryTR: "Takım için yazdığım topraklama ve elektriksel mimari standardı.",
+      problemEN: "Subsystems were wired without a shared grounding scheme. That's an EMC and reliability risk as the electrical system grows.",
+      problemTR: "Alt sistemler ortak bir topraklama şeması olmadan bağlanıyordu. Elektrik sistemi büyüdükçe bu, EMC ve güvenilirlik riski oluşturuyordu.",
+      approachEN: "I wrote a standard defining grounding topology, reference points, and shielding practice, then rolled it out across subsystems.",
+      approachTR: "Topraklama topolojisini, referans noktalarını ve ekranlama pratiğini tanımlayan bir standart yazdım, sonra alt sistemlere yaydım.",
+      resultEN: "The team adopted it as the grounding reference for the build.",
+      resultTR: "Takım bunu yapım için topraklama referansı olarak benimsedi.",
+      learnedEN: "Early decisions about grounding shape EMC results later on.",
+      learnedTR: "Topraklamayla ilgili erken kararlar, sonraki EMC sonuçlarını şekillendiriyor."
     },
     {
       status: "progress",
@@ -432,16 +395,16 @@
       placeholderTR: "Verim haritası — yakında",
       titleEN: "Motor Efficiency Mapping",
       titleTR: "Motor Verim Haritalama",
-      summaryEN: "Recovering a purchased traction motor's real efficiency at operating points the datasheet never covered.",
-      summaryTR: "Satın alınan bir tahrik motorunun, datasheet'te yer almayan gerçek çalışma noktalarındaki verimini elde etmek.",
-      problemEN: "The traction motor we sourced only listed nominal figures — no efficiency data at our actual load and speed points.",
-      problemTR: "Temin ettiğimiz tahrik motorunun datasheet'inde yalnızca nominal değerler vardı — gerçek yük ve hız noktalarımızdaki verim verisi yoktu.",
-      approachEN: "Building a 2D finite-element model in ANSYS Maxwell / RMxprt — refining the air-gap mesh and sweeping operating points to produce a full efficiency map and cogging-torque profile.",
-      approachTR: "ANSYS Maxwell / RMxprt'te 2D sonlu elemanlar modeli kurmak — hava aralığı mesh'ini iyileştirip çalışma noktalarını tarayarak tam bir verim haritası ve cogging tork profili üretmek.",
-      resultEN: "Efficiency map and cogging-torque results — in progress, to be added.",
-      resultTR: "Verim haritası ve cogging tork sonuçları — devam ediyor, eklenecek.",
-      learnedEN: "How air-gap mesh quality drives the accuracy of torque and loss predictions.",
-      learnedTR: "Hava aralığı mesh kalitesinin tork ve kayıp tahminlerinin doğruluğunu nasıl belirlediği."
+      summaryEN: "Finding the real efficiency of a purchased motor at operating points the datasheet didn't cover.",
+      summaryTR: "Satın aldığımız motorun, datasheet'te olmayan çalışma noktalarındaki gerçek verimini bulmak.",
+      problemEN: "The motor we bought only listed nominal figures. No efficiency data at our actual load and speed points.",
+      problemTR: "Aldığımız motorun datasheet'inde yalnızca nominal değerler vardı. Gerçek yük ve hız noktalarımızda verim verisi yoktu.",
+      approachEN: "Building a 2D finite-element model in ANSYS Maxwell and RMxprt. Refining the air-gap mesh and sweeping operating points to get a full efficiency map and cogging-torque profile.",
+      approachTR: "ANSYS Maxwell ve RMxprt'te 2D sonlu elemanlar modeli kurdum. Hava aralığı mesh'ini iyileştirip çalışma noktalarını tarayarak verim haritası ve cogging tork profili çıkardım.",
+      resultEN: "In progress. Results will be added here.",
+      resultTR: "Devam ediyor. Sonuçlar buraya eklenecek.",
+      learnedEN: "Mesh quality in the air gap directly affects how accurate the torque and loss predictions are.",
+      learnedTR: "Hava aralığındaki mesh kalitesi, tork ve kayıp tahminlerinin doğruluğunu doğrudan etkiliyor."
     },
     {
       status: "planned",
@@ -451,37 +414,16 @@
       placeholderTR: "İzolasyon & EMI çalışması — yakında",
       titleEN: "Galvanic Isolation & EMI Analysis",
       titleTR: "Galvanik İzolasyon & EMI Analizi",
-      summaryEN: "Verifying isolation barriers and mapping EMI coupling paths in the powertrain.",
-      summaryTR: "Güç aktarma organındaki izolasyon bariyerlerini doğrulamak ve EMI kuplaj yollarını haritalamak.",
-      problemEN: "High-voltage and low-voltage domains must stay isolated, and switching noise must not couple into sensitive signals.",
-      problemTR: "Yüksek gerilim ve düşük gerilim bölgeleri izole kalmalı ve anahtarlama gürültüsü hassas sinyallere geçmemeli.",
-      approachEN: "Parasitic extraction in ANSYS Q3D to quantify coupling capacitances and inductances, then trace the dominant EMI paths.",
-      approachTR: "Kuplaj kapasitanslarını ve endüktanslarını ölçmek için ANSYS Q3D'de parazitik çıkarım, ardından baskın EMI yollarının izini sürmek.",
-      resultEN: "Bootcamp output — to be documented here.",
-      resultTR: "Bootcamp çıktısı — burada belgelenecek.",
-      learnedEN: "To be added as the analysis is completed.",
-      learnedTR: "Analiz tamamlandıkça eklenecek."
-    }
-  ];
-
-  /* ===========================================================================
-     WRITING NOTES  —  optional short pieces. Same idea: copy a { ... } block.
-     Leave the array empty ( const NOTES = []; ) to hide the Writing section.
-     =========================================================================== */
-  const NOTES = [
-    {
-      dateEN: "Draft", dateTR: "Taslak",
-      titleEN: "Why EMC has no “department”",
-      titleTR: "EMC’nin neden bir “bölümü” yok",
-      blurbEN: "A short note on why electromagnetic compatibility lives in the gaps between mechanical, electrical, and controls.",
-      blurbTR: "Elektromanyetik uyumluluğun neden makine, elektrik ve kontrol arasındaki boşlukta yaşadığına dair kısa bir not."
-    },
-    {
-      dateEN: "Draft", dateTR: "Taslak",
-      titleEN: "Alternating current, as breathing",
-      titleTR: "Bir nefes alışveriş olarak alternatif akım",
-      blurbEN: "An attempt to explain AC without equations — the intuition I reach for when teaching the team.",
-      blurbTR: "Alternatif akımı denklemsiz anlatma denemesi — takıma anlatırken başvurduğum sezgi."
+      summaryEN: "Checking isolation barriers and mapping EMI coupling paths in the powertrain.",
+      summaryTR: "Güç aktarma organındaki izolasyon bariyerlerini kontrol etmek ve EMI kuplaj yollarını haritalamak.",
+      problemEN: "High-voltage and low-voltage sides must stay isolated. Switching noise shouldn't couple into sensitive signals.",
+      problemTR: "Yüksek gerilim ve düşük gerilim taraflar izole kalmalı. Anahtarlama gürültüsü hassas sinyallere geçmemeli.",
+      approachEN: "Parasitic extraction in ANSYS Q3D to measure coupling capacitance and inductance, then trace the main EMI paths.",
+      approachTR: "ANSYS Q3D'de parazitik çıkarım yaparak kuplaj kapasitans ve endüktansını ölçmek, sonra ana EMI yollarının izini sürmek.",
+      resultEN: "Not started yet.",
+      resultTR: "Henüz başlamadı.",
+      learnedEN: "To be added once the analysis is done.",
+      learnedTR: "Analiz bitince eklenecek."
     }
   ];
 
@@ -541,24 +483,6 @@
         art.appendChild(body);
         projectList.appendChild(art);
       });
-    }
-
-    // ---- Writing ----
-    const noteList = document.getElementById("note-list");
-    const writingSection = document.getElementById("writing");
-    if(noteList){
-      if(!NOTES.length && writingSection){
-        writingSection.style.display = "none";      // hide the section if there are no notes
-      } else {
-        NOTES.forEach(function(n){
-          const card = document.createElement("div");
-          card.className = "note";
-          card.appendChild(bilingual("div", "date", n.dateEN, n.dateTR));
-          card.appendChild(bilingual("h3", null, n.titleEN, n.titleTR));
-          card.appendChild(bilingual("p", null, n.blurbEN, n.blurbTR));
-          noteList.appendChild(card);
-        });
-      }
     }
 
     // ---- Reveal project cards on scroll (after they exist) ----
