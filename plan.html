@@ -67,6 +67,19 @@
   .sidebar{position:sticky;top:74px;display:flex;flex-direction:column;gap:26px}
   .main{min-width:0}
 
+  .pomodoro{border:1px solid var(--line);padding:12px 14px;text-align:center}
+  .pomodoro h3.group{margin-top:0;text-align:left}
+  .pomotime{font-family:var(--mono);font-size:1.5rem;letter-spacing:.03em;color:var(--pale);margin:2px 0 1px}
+  .pomomode{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--haze);margin-bottom:10px}
+  .pomobtns{display:flex;gap:6px;justify-content:center}
+  .pomobtns button{
+    background:none;border:1px solid var(--line);border-radius:2px;color:var(--pale);
+    font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;
+    padding:5px 11px;cursor:pointer;
+  }
+  .pomolaps{font-family:var(--mono);font-size:.66rem;letter-spacing:.05em;color:var(--haze);margin-top:9px}
+  .pomobtns button:hover{border-color:var(--pale)}
+
   .stickybox{border:1px solid var(--line);padding:16px 18px}
   .stickybox h3.group{margin-top:0}
   .stickylist{list-style:none;display:flex;flex-direction:column}
@@ -217,6 +230,17 @@
         <div class="calmeta">
           <div class="next-bday" id="nextBday"></div>
         </div>
+      </section>
+
+      <section class="pomodoro">
+        <h3 class="group">Pomodoro</h3>
+        <div class="pomotime" id="pomoTime">25:00</div>
+        <div class="pomomode" id="pomoMode">Çalışma</div>
+        <div class="pomobtns">
+          <button id="pomoStart">Başlat</button>
+          <button id="pomoReset">Sıfırla</button>
+        </div>
+        <div class="pomolaps" id="pomoLaps">Tur: 0</div>
       </section>
 
       <section class="stickybox">
@@ -511,6 +535,79 @@
       });
     });
     updateProgress();
+  })();
+</script>
+
+<script>
+  // Pomodoro
+  (function(){
+    var WORK = 25 * 60, BREAK = 5 * 60;
+    var timeEl = document.getElementById('pomoTime');
+    var modeEl = document.getElementById('pomoMode');
+    var startBtn = document.getElementById('pomoStart');
+    var resetBtn = document.getElementById('pomoReset');
+    var lapsEl = document.getElementById('pomoLaps');
+    if(!timeEl) return;
+
+    var remaining = WORK, working = true, running = false, iv = null, laps = 0;
+    var baseTitle = document.title;
+
+    function fmt(s){
+      var m = Math.floor(s / 60), r = s % 60;
+      return (m < 10 ? '0' : '') + m + ':' + (r < 10 ? '0' : '') + r;
+    }
+    function render(){
+      timeEl.textContent = fmt(remaining);
+      modeEl.textContent = working ? 'Çalışma' : 'Mola';
+      if(lapsEl) lapsEl.textContent = 'Tur: ' + laps;
+      document.title = running ? (fmt(remaining) + ' · ' + (working ? 'Çalışma' : 'Mola')) : baseTitle;
+    }
+    function beep(){
+      try{
+        var ctx = new (window.AudioContext || window.webkitAudioContext)();
+        var osc = ctx.createOscillator(), gain = ctx.createGain();
+        osc.frequency.value = 660;
+        gain.gain.setValueAtTime(0.0001, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.15, ctx.currentTime + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.5);
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(); osc.stop(ctx.currentTime + 0.5);
+      }catch(e){}
+    }
+    function tick(){
+      remaining--;
+      if(remaining <= 0){
+        beep();
+        if(working) laps++; // one lap = one completed work session
+        working = !working;
+        remaining = working ? WORK : BREAK;
+      }
+      render();
+    }
+    function start(){
+      if(running) return;
+      running = true;
+      startBtn.textContent = 'Duraklat';
+      iv = setInterval(tick, 1000);
+      render();
+    }
+    function pause(){
+      running = false;
+      startBtn.textContent = 'Başlat';
+      clearInterval(iv);
+      render();
+    }
+    function reset(){
+      pause();
+      working = true;
+      remaining = WORK;
+      laps = 0;
+      render();
+    }
+
+    startBtn.addEventListener('click', function(){ running ? pause() : start(); });
+    resetBtn.addEventListener('click', reset);
+    render();
   })();
 </script>
 
