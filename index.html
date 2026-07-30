@@ -369,6 +369,27 @@
      =========================================================================== */
   const PROJECTS = [
     {
+      status: "progress",
+      image: "img/magnetron-eigenmode.jpg",
+      altEN: "HFSS eigenmode E-field plot of a 12-cavity magnetron anode block",
+      titleEN: "12-Cavity Magnetron — HFSS Eigenmode Analysis",
+      titleTR: "12 Kaviteli Manyetron — HFSS Eigenmode Analizi",
+      summaryEN: "Extracting the cavity resonance modes of a radar magnetron's anode block.",
+      summaryTR: "Radar manyetronu anot bloğunun kavite rezonans modlarını çıkardım.",
+      problemEN: "The anode block's resonance frequencies and where the π-mode sits in that spectrum were unknown; the analytical route wasn't reliable.",
+      problemTR: "Anot bloğunun rezonans frekansları ve π-modunun spektrumdaki yeri bilinmiyordu; analitik yol güvenilir değildi.",
+      approachEN: "Imported the geometry into HFSS, assigned copper/PEC, and built the vacuum volume by Boolean subtraction. Ran the eigenmode solution with a 2.5 GHz lower bound and 15 modes.",
+      approachTR: "Geometriyi HFSS'e aktardım, bakır/PEC atadım, vakum hacmini Boolean çıkarmayla oluşturdum. Eigenmode çözümünü 2.5 GHz alt sınır ve 15 modla çalıştırdım.",
+      parametersEN: "12 resonators · anode Ø58.30 mm · interaction space Ø24.00 mm · cathode Ø9.60 mm · cavity hole Ø9.15 mm · slot 4.00 × 1.081 mm · anode length 18.00 mm · vacuum 21.9 cm³ · 10 passes, 16,270 elements",
+      parametersTR: "12 rezonatör · anot Ø58.30 mm · etkileşim boşluğu Ø24.00 mm · katot Ø9.60 mm · kavite deliği Ø9.15 mm · yarık 4.00 × 1.081 mm · anot boyu 18.00 mm · vakum 21.9 cm³ · 10 geçiş, 16.270 eleman",
+      resultEN: "Vacuum volume checked out against an independent calculation. Modes came out at 8.57–8.68 GHz with a reasonable structure: closely degenerate pairs, plus one mode split off below them (8.57 GHz). The field concentrates around the cathode and at the slot mouths — consistent with the expected pattern.",
+      resultTR: "Vakum hacmi bağımsız hesapla doğrulandı. Modlar 8.57–8.68 GHz'de makul yapı verdi: yakın dejenere çiftler ve bunlardan ayrışmış tek mod (8.57 GHz). Alan katot çevresi ve yarık ağızlarında yoğunlaşıyor — beklenen desenle tutarlı.",
+      learnedEN: "With 12 cavities the modes sit so close together that when their order swaps between passes, the convergence criterion becomes meaningless — this is exactly why strapping exists. With PEC and a lossless vacuum, Q carries no physical information. Mag_E can't distinguish modes; identifying the π-mode needs Vector_E.",
+      learnedTR: "12 kavitede modlar çok yakın; sıralama geçişler arası değişince yakınsama kriteri anlamsızlaşıyor — strapping'in varlık nedeni. PEC + kayıpsız vakumda Q fiziksel bilgi taşımıyor. Mag_E modları ayırt edemez, π-modu için Vector_E gerekiyor.",
+      statusNoteEN: "Not converged (delta 116%, target 1%). The π-mode is not confirmed — 8.57 GHz is only a candidate, and modes 1–2 weren't seen. Next: drop the mode count to 5 and re-solve with a mesh constraint, then confirm the phase alternation with Vector_E.",
+      statusNoteTR: "Yakınsamadı (delta %116, hedef %1). π-modu doğrulanmadı; 8.57 GHz sadece aday, Mod 1–2 görülmedi. Sırada: mod sayısını 5'e düşürüp mesh kısıtıyla yeniden çözmek, Vector_E ile faz alternasyonunu doğrulamak."
+    },
+    {
       status: "complete",
       image: null,
       altEN: "Team-wide grounding and electrical-architecture standard",
@@ -443,11 +464,16 @@
       progress: { en: "In Progress", tr: "Devam Ediyor" },
       planned:  { en: "Planned",     tr: "Planlanan" }
     };
+    // Every project shows Problem/Approach/Result/Learned. Parameters and Status
+    // are optional extras — set p.parametersEN/TR and/or p.statusNoteEN/TR to
+    // show them; leave them off and the row just won't render.
     const rows = [
-      ["Problem",  "Problem",   "problem"],
-      ["Approach", "Yaklaşım",  "approach"],
-      ["Result",   "Sonuç",     "result"],
-      ["Learned",  "Öğrenilen", "learned"]
+      ["Problem",    "Problem",    "problem"],
+      ["Approach",   "Yaklaşım",   "approach"],
+      ["Parameters", "Parametreler","parameters"],
+      ["Result",     "Sonuç",      "result"],
+      ["Learned",    "Öğrenilen",  "learned"],
+      ["Status",     "Durum",      "statusNote"]
     ];
     const projectList = document.getElementById("project-list");
     if(projectList){
@@ -476,6 +502,7 @@
 
         const dl = document.createElement("dl");
         rows.forEach(function(r){
+          if(p[r[2] + "EN"] === undefined) return;
           dl.appendChild(bilingual("dt", null, r[0], r[1]));
           dl.appendChild(bilingual("dd", null, p[r[2] + "EN"], p[r[2] + "TR"]));
         });
