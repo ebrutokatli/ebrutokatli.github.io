@@ -45,11 +45,25 @@
     background:var(--ink);color:var(--pale);font-family:var(--serif);
     font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:1080px;margin:0 auto;padding:0 28px 90px}
+  .wrap{max-width:1360px;margin:0 auto;padding:0 28px 90px}
   .barwrap{position:sticky;top:0;z-index:5;background:var(--barbg);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-  .bar{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;max-width:1080px;margin:0 auto}
+  .bar{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;max-width:1360px;margin:0 auto}
 
-  .planlayout{display:grid;grid-template-columns:300px 1fr;gap:44px;align-items:start}
+  .ddgsearch{display:flex;gap:10px;margin:26px 0 30px}
+  .ddgsearch input{
+    flex:1;background:none;border:1px solid var(--line);border-radius:2px;
+    color:var(--pale);font-family:var(--mono);font-size:.92rem;padding:11px 14px;
+  }
+  .ddgsearch input::placeholder{color:var(--haze)}
+  .ddgsearch input:focus{outline:none;border-color:var(--pale)}
+  .ddgsearch button{
+    background:none;border:1px solid var(--line);border-radius:2px;color:var(--pale);
+    font-family:var(--mono);font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;
+    padding:0 20px;cursor:pointer;
+  }
+  .ddgsearch button:hover{border-color:var(--pale)}
+
+  .planlayout{display:grid;grid-template-columns:300px 1fr 300px;gap:96px;align-items:start}
   .sidebar{position:sticky;top:74px;display:flex;flex-direction:column;gap:26px}
   .main{min-width:0}
 
@@ -63,9 +77,22 @@
   .linklist a:hover{border-color:var(--pale)}
   .linklist .empty{font-family:var(--mono);font-size:.78rem;color:var(--haze)}
 
-  @media(max-width:880px){
+  /* ---- RSS ---- */
+  .rssbox{position:sticky;top:74px;display:flex;flex-direction:column;gap:30px}
+  .feedgroup h3.group{margin-top:0}
+  .feeditems{display:flex;flex-direction:column;gap:14px}
+  .feeditem a{
+    display:block;font-family:var(--serif);font-size:.95rem;line-height:1.4;
+    color:var(--pale);text-decoration:none;
+  }
+  .feeditem a:hover{color:var(--haze)}
+  .feeditem .date{font-family:var(--mono);font-size:.68rem;color:var(--haze);margin-top:3px;letter-spacing:.03em}
+  .feedstatus{font-family:var(--mono);font-size:.78rem;color:var(--haze)}
+  .feedstatus a{color:var(--pale)}
+
+  @media(max-width:1150px){
     .planlayout{grid-template-columns:1fr}
-    .sidebar{position:static}
+    .sidebar,.rssbox{position:static}
   }
   .bar a{font-family:var(--mono);font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--haze);text-decoration:none}
   .bar a:hover{color:var(--pale)}
@@ -161,6 +188,13 @@
   </div>
 
   <div class="wrap">
+
+    <!-- ============ SEARCH ============ -->
+    <form class="ddgsearch" action="https://duckduckgo.com/" method="get" target="_blank" rel="noopener">
+      <input type="text" name="q" placeholder="DuckDuckGo'da ara…" autocomplete="off">
+      <button type="submit">Ara</button>
+    </form>
+
    <div class="planlayout">
 
     <!-- ============ SIDEBAR: CALENDAR + LINKS ============ -->
@@ -296,6 +330,11 @@
     </footer>
     </main>
 
+    <!-- ============ RSS ============ -->
+    <!-- Feeds are generated from the FEEDS array in the script at the bottom
+         of this file. Add one by copying a { label, url } block there. -->
+    <aside class="rssbox" id="rssbox"></aside>
+
    </div>
   </div>
 
@@ -309,6 +348,8 @@
        { month: 3, day: 14, name: "Rana" },
      =========================================================================== */
   const BIRTHDAYS = [
+    { month: 3, day: 5, name: "Deniz Adam" },
+    { month: 8, day: 3, name: "Sevde" }
   ];
 
   /* ===========================================================================
@@ -335,6 +376,72 @@
       a.target = '_blank';
       a.rel = 'noopener';
       box.appendChild(a);
+    });
+  })();
+</script>
+
+<script>
+  /* ===========================================================================
+     FEEDS  —  RSS columns shown to the right of the checklist. Add one by
+     copying a { label, url } block. This is a static site with no backend,
+     so feeds are fetched client-side through rss2json.com's free relay
+     (needed because raw RSS XML hosts don't allow cross-origin fetches from
+     a browser). If that relay is ever down, each feed falls back to a plain
+     link so it's never a dead end.
+     =========================================================================== */
+  const FEEDS = [
+    { label: "IndyTurk", url: "https://www.indyturk.com/rss.xml" },
+    { label: "BBC Türkçe", url: "https://feeds.bbci.co.uk/turkce/rss.xml" }
+  ];
+  const FEED_ITEM_LIMIT = 6;
+
+  (function renderFeeds(){
+    var box = document.getElementById('rssbox');
+    if(!box || !FEEDS.length) return;
+
+    FEEDS.forEach(function(feed, i){
+      var section = document.createElement('section');
+      section.className = 'feedgroup';
+      var h3 = document.createElement('h3');
+      h3.className = 'group';
+      h3.textContent = feed.label;
+      var items = document.createElement('div');
+      items.className = 'feeditems';
+      items.id = 'feed-' + i;
+      items.innerHTML = '<div class="feedstatus">Yükleniyor…</div>';
+      section.appendChild(h3);
+      section.appendChild(items);
+      box.appendChild(section);
+
+      var api = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(feed.url);
+      fetch(api)
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+          if(data.status !== 'ok' || !data.items || !data.items.length) throw new Error('empty');
+          items.innerHTML = '';
+          data.items.slice(0, FEED_ITEM_LIMIT).forEach(function(it){
+            var row = document.createElement('div');
+            row.className = 'feeditem';
+            var a = document.createElement('a');
+            a.href = it.link;
+            a.target = '_blank';
+            a.rel = 'noopener';
+            a.textContent = it.title;
+            var date = document.createElement('div');
+            date.className = 'date';
+            date.textContent = it.pubDate ? it.pubDate.slice(0, 10) : '';
+            row.appendChild(a);
+            row.appendChild(date);
+            items.appendChild(row);
+          });
+        })
+        .catch(function(){
+          items.innerHTML = '';
+          var status = document.createElement('div');
+          status.className = 'feedstatus';
+          status.innerHTML = 'Şimdi yüklenemedi — <a href="' + feed.url + '" target="_blank" rel="noopener">doğrudan feed</a>';
+          items.appendChild(status);
+        });
     });
   })();
 </script>
